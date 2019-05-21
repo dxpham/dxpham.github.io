@@ -5,10 +5,10 @@
 	<title>Du Pham's Portfolio</title>
 
 	<link rel="stylesheet" media="screen" href="style.css">
-	<link rel="alternate" type="application/rss+xml" title="RSS" href="http://www.csszengarden.com/zengarden.xml">
-
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="author" content="Dave Shea">
+	<meta name="author" content="Du Pham">
 	<meta name="description" content="A demonstration of what can be accomplished visually through CSS-based design.">
 	<meta name="robots" content="all">
 
@@ -18,35 +18,7 @@
 	<![endif]-->
 </head>
 
-<!--
 
-
-
-	View source is a feature, not a bug. Thanks for your curiosity and
-	interest in participating!
-
-	Here are the submission guidelines for the new and improved csszengarden.com:
-
-	- CSS3? Of course! Prefix for ALL browsers where necessary.
-	- go responsive; test your layout at multiple screen sizes.
-	- your browser testing baseline: IE9+, recent Chrome/Firefox/Safari, and iOS/Android
-	- Graceful degradation is acceptable, and in fact highly encouraged.
-	- use classes for styling. Don't use ids.
-	- web fonts are cool, just make sure you have a license to share the files. Hosted 
-	  services that are applied via the CSS file (ie. Google Fonts) will work fine, but
-	  most that require custom HTML won't. TypeKit is supported, see the readme on this
-	  page for usage instructions: https://github.com/mezzoblue/csszengarden.com/
-
-	And a few tips on building your CSS file:
-
-	- use :first-child, :last-child and :nth-child to get at non-classed elements
-	- use ::before and ::after to create pseudo-elements for extra styling
-	- use multiple background images to apply as many as you need to any element
-	- use the Kellum Method for image replacement, if still needed. http://goo.gl/GXxdI
-	- don't rely on the extra divs at the bottom. Use ::before and ::after instead.
-
-		
--->
 
 <body id="css-zen-garden">
 <div class="page-wrapper">
@@ -63,7 +35,7 @@
 		</div>
 
 		<div class="me" id="zen-me" role="article">
-			<h3>About Me </h3>
+			<h3><i class="material-icons">person</i> About Me </h3>
 
 			
 			<p style="width:65%; margin-top: -35px">I have a Ph.D. in mathematics and scientific computing from Indiana University under supervision of <a href="http://pages.iu.edu/~temam/">Roger Temam</a>. 
@@ -80,13 +52,18 @@
 
 	<div class="main supporting" id="zen-supporting" role="main">
 			<div class="explanation" id="zen-project1" role="article">
-					<h3>Project 1</h3>
-					<p>Littering a dark and dreary road lay the past relics of browser-specific tags, incompatible <abbr title="Document Object Model">DOM</abbr>s, broken <abbr title="Cascading Style Sheets">CSS</abbr> support, and abandoned browsers.</p>
+					<h3>&#9755; 2D Lid Driven Fluid Flow</h3>
+					<p>In this project we solve the Navier Stokes equations on a rectangular domain: we seek numerical solution of the velocity of a fluid flow body \({\bf u} =(u,v)\) and its the pressure \(p\)
+						satisfying
+						\[\begin{cases} & {\bf u}_t -\frac{1}{Re}\triangle {\bf u} +{\bf u} \cdot \nabla {\bf u} + \nabla  p = {\bf 0} \\ & {\rm div} \nabla {\bf u} = 0
+						\\ &  
+						\end{cases} \]
+					</p>
 					<p>We must clear the mind of the past. Web enlightenment has been achieved thanks to the tireless efforts of folk like the <abbr title="World Wide Web Consortium">W3C</abbr>, <abbr title="Web Standards Project">WaSP</abbr>, and the major browser creators.</p>
 					<p>The CSS Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the time-honored techniques in new and invigorating fashion. Become one with the web.</p>
 				</div>
-				<div class="explanation" id="zen-project1" role="article">
-						<h3>Project 2</h3>
+				<div class="explanation" id="zen-project2" role="article">
+						<h3>&#9755; Project 2</h3>
 						<p>Littering a dark and dreary road lay the past relics of browser-specific tags, incompatible <abbr title="Document Object Model">DOM</abbr>s, broken <abbr title="Cascading Style Sheets">CSS</abbr> support, and abandoned browsers.</p>
 						<p>We must clear the mind of the past. Web enlightenment has been achieved thanks to the tireless efforts of folk like the <abbr title="World Wide Web Consortium">W3C</abbr>, <abbr title="Web Standards Project">WaSP</abbr>, and the major browser creators.</p>
 						<p>The CSS Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the time-honored techniques in new and invigorating fashion. Become one with the web.</p>
@@ -124,7 +101,7 @@
 			<a href="http://jigsaw.w3.org/css-validator/check/referer" title="Check the validity of this site&#8217;s CSS" class="zen-validate-css">CSS</a>
 			<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="View the Creative Commons license of this site: Attribution-NonCommercial-ShareAlike." class="zen-license">CC</a>
 			<a href="http://mezzoblue.com/zengarden/faq/#aaa" title="Read about the accessibility of this site" class="zen-accessibility">A11y</a>
-			<a href="https://github.com/mezzoblue/csszengarden.com" title="Fork this site on Github" class="zen-github">GH</a>
+			<a href="http://www.csszengarden.com/194/" title="original style page" class="zen-github">GH</a>
 		</footer>
 
 	</div>
@@ -145,7 +122,7 @@
 									</li>
 							<li class="next">
 								<a href="#zen-project1" title="Name of Project 1">
-									Driven lid cavity
+									Driven lid cavity flow
 								</a>
 							</li>
 							<li class="viewall">
