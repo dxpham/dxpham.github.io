@@ -31,7 +31,7 @@
 
 		<div class="summary" id="zen-summary" role="article">
 			<p>   </p>
-			<p>My projects are at <a href="https://github.com/dxpham">My Github Profile</a></p>
+			<p>See more of  projects  at  <a href="https://github.com/dxpham">My Github Profile</a></p>
 		</div>
 
 		<div class="me" id="zen-me" role="article">
@@ -52,49 +52,42 @@
 
 	<div class="main supporting" id="zen-supporting" role="main">
 			<div class="explanation" id="zen-project1" role="article">
+					<div class="explanation" id="zen-project2" role="article">
+							<h3>&#9755; Titanic: Machine Learning from Disaster</h3>
+							<p>I participated in a binary classification project for the Titanic disaster on Kaggle. One of the reasons that the shipwreck led to such loss of life was that there were not enough lifeboats for the passengers and crew. Although there was some element of luck involved in surviving the sinking, some groups of people were more likely to survive than others, such as women, children, and the upper-class.</p>
+							<p>In the challenge, I was asked to complete the analysis of what sorts of people were likely to survive. In particular, I was asked to apply the tools of machine learning to predict which passengers survived the tragedy.
+								</p>
+							<p>Based on the given train and test data, which were excel data files with  many missed entries, I did some data wrangling  using Panda. 
+								I was then able to predict the survival at a rate of 82.3% using a three-layer neural network on Kaggle and 89% using test data. My result using neural network performs better than the traditional statistical methods (decision tree, logistic regression, ...) which could get to  78% even for this not so large size data set.</p>
+						</div>
 					<h3>&#9755; 2D Lid Driven Fluid Flow</h3>
-					<p>In this project we solve the Navier Stokes equations on a rectangular domain: we seek numerical solution of the velocity of a fluid flow body \({\bf u} =(u,v)\) and its the pressure \(p\)
-						satisfying
-						\[\begin{cases} & {\bf u}_t -\frac{1}{Re}\triangle {\bf u} +{\bf u} \cdot \nabla {\bf u} + \nabla  p = {\bf 0} \\ & {\rm div} \nabla {\bf u} = 0
-						\\ &  
-						\end{cases} \]
-					</p>
-					<p>We must clear the mind of the past. Web enlightenment has been achieved thanks to the tireless efforts of folk like the <abbr title="World Wide Web Consortium">W3C</abbr>, <abbr title="Web Standards Project">WaSP</abbr>, and the major browser creators.</p>
-					<p>The CSS Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the time-honored techniques in new and invigorating fashion. Become one with the web.</p>
+					<p >In this project we solve the Navier Stokes equations on a rectangular domain: we seek numerical solution of the velocity of a fluid flow body \({\bf u} =(u,v)\) and its the pressure \(p\)
+						satisfying 
+
+					 
+										\[\begin{cases} & {\bf u}_t -\frac{1}{Re}\triangle {\bf u} +{\bf u} \cdot \nabla {\bf u} + \nabla  p = {\bf 0} \\ & \nabla\cdot {\bf u} = 0
+										\\ &  \text{Boundary + initial conditions}
+										\end{cases} \]
+							 The flow vanishes on the boundaries except at the top boundary where the horizontal velocity is one \(u=1,v=0\): 
+					</p>		 
+											<!-- <svg width="400" height="180" align="center" preserveAspectRatio="xMinYMin">
+											<rect x="10" y="10" width="100" height="100" style="fill:gray;stroke:gray;stroke-width:3;fill-opacity:0.1;stroke-opacity:0.9" />
+											<text x="11" y="55" fill="gray">u=v=0</text> <text x="103" y="55" fill="gray">u=v=0</text> <text x="40" y="103" fill="gray">u=v=0</text> 
+											<text x="40" y="8" fill="red">u=1, v=0</text>
+											Sorry, your browser does not support inline SVG.  
+										  </svg>
+										 			 -->
+							 
+
+						
+					
+				
+
+					
 				</div>
-				<div class="explanation" id="zen-project2" role="article">
-						<h3>&#9755; Project 2</h3>
-						<p>Littering a dark and dreary road lay the past relics of browser-specific tags, incompatible <abbr title="Document Object Model">DOM</abbr>s, broken <abbr title="Cascading Style Sheets">CSS</abbr> support, and abandoned browsers.</p>
-						<p>We must clear the mind of the past. Web enlightenment has been achieved thanks to the tireless efforts of folk like the <abbr title="World Wide Web Consortium">W3C</abbr>, <abbr title="Web Standards Project">WaSP</abbr>, and the major browser creators.</p>
-						<p>The CSS Zen Garden invites you to relax and meditate on the important lessons of the masters. Begin to see with clarity. Learn to use the time-honored techniques in new and invigorating fashion. Become one with the web.</p>
-					</div>
+				
 
-		<!-- <div class="explanation" id="zen-explanation" role="article">
-			<h3>So What is This About?</h3>
-			<p>There is a continuing need to show the power of <abbr title="Cascading Style Sheets">CSS</abbr>. The Zen Garden aims to excite, inspire, and encourage participation. To begin, view some of the existing designs in the list. Clicking on any one will load the style sheet into this very page. The <abbr title="HyperText Markup Language">HTML</abbr> remains the same, the only thing that has changed is the external <abbr title="Cascading Style Sheets">CSS</abbr> file. Yes, really.</p>
-			<p><abbr title="Cascading Style Sheets">CSS</abbr> allows complete and total control over the style of a hypertext document. The only way this can be illustrated in a way that gets people excited is by demonstrating what it can truly be, once the reins are placed in the hands of those able to create beauty from structure. Designers and coders alike have contributed to the beauty of the web; we can always push it further.</p>
-		</div>
-
-		<div class="participation" id="zen-participation" role="article">
-			<h3>Participation</h3>
-			<p>Strong visual design has always been our focus. You are modifying this page, so strong <abbr title="Cascading Style Sheets">CSS</abbr> skills are necessary too, but the example files are commented well enough that even <abbr title="Cascading Style Sheets">CSS</abbr> novices can use them as starting points. Please see the <a href="http://www.mezzoblue.com/zengarden/resources/" title="A listing of CSS-related resources"><abbr title="Cascading Style Sheets">CSS</abbr> Resource Guide</a> for advanced tutorials and tips on working with <abbr title="Cascading Style Sheets">CSS</abbr>.</p>
-			<p>You may modify the style sheet in any way you wish, but not the <abbr title="HyperText Markup Language">HTML</abbr>. This may seem daunting at first if you&#8217;ve never worked this way before, but follow the listed links to learn more, and use the sample files as a guide.</p>
-			<p>Download the sample <a href="/examples/index" title="This page's source HTML code, not to be modified.">HTML</a> and <a href="/examples/style.css" title="This page's sample CSS, the file you may modify.">CSS</a> to work on a copy locally. Once you have completed your masterpiece (and please, don&#8217;t submit half-finished work) upload your <abbr title="Cascading Style Sheets">CSS</abbr> file to a web server under your control. <a href="http://www.mezzoblue.com/zengarden/submit/" title="Use the contact form to send us your CSS file">Send us a link</a> to an archive of that file and all associated assets, and if we choose to use it we will download it and place it on our server.</p>
-		</div>
-
-		<div class="benefits" id="zen-benefits" role="article">
-			<h3>Benefits</h3>
-			<p>Why participate? For recognition, inspiration, and a resource we can all refer to showing people how amazing <abbr title="Cascading Style Sheets">CSS</abbr> really can be. This site serves as equal parts inspiration for those working on the web today, learning tool for those who will be tomorrow, and gallery of future techniques we can all look forward to.</p>
-		</div>
-
-		<div class="requirements" id="zen-requirements" role="article">
-			<h3>Requirements</h3>
-			<p>Where possible, we would like to see mostly <abbr title="Cascading Style Sheets, levels 1 and 2">CSS 1 &amp; 2</abbr> usage. <abbr title="Cascading Style Sheets, levels 3 and 4">CSS 3 &amp; 4</abbr> should be limited to widely-supported elements only, or strong fallbacks should be provided. The CSS Zen Garden is about functional, practical <abbr title="Cascading Style Sheets">CSS</abbr> and not the latest bleeding-edge tricks viewable by 2% of the browsing public. The only real requirement we have is that your <abbr title="Cascading Style Sheets">CSS</abbr> validates.</p>
-			<p>Luckily, designing this way shows how well various browsers have implemented <abbr title="Cascading Style Sheets">CSS</abbr> by now. When sticking to the guidelines you should see fairly consistent results across most modern browsers. Due to the sheer number of user agents on the web these days &#8212; especially when you factor in mobile &#8212; pixel-perfect layouts may not be possible across every platform. That&#8217;s okay, but do test in as many as you can. Your design should work in at least IE9+ and the latest Chrome, Firefox, iOS and Android browsers (run by over 90% of the population).</p>
-			<p>We ask that you submit original artwork. Please respect copyright laws. Please keep objectionable material to a minimum, and try to incorporate unique and interesting visual themes to your work. We&#8217;re well past the point of needing another garden-related design.</p>
-			<p>This is a learning exercise as well as a demonstration. You retain full copyright on your graphics (with limited exceptions, see <a href="http://www.mezzoblue.com/zengarden/submit/guidelines/">submission guidelines</a>), but we ask you release your <abbr title="Cascading Style Sheets">CSS</abbr> under a Creative Commons license identical to the <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" title="View the Zen Garden's license information.">one on this site</a> so that others may learn from your work.</p>
-			<p role="contentinfo">By <a href="http://www.mezzoblue.com/">Dave Shea</a>. Bandwidth graciously donated by <a href="http://www.mediatemple.net/">mediatemple</a>. Now available: <a href="http://www.amazon.com/exec/obidos/ASIN/0321303474/mezzoblue-20/">Zen Garden, the book</a>.</p>
-		</div> -->
+		
 
 		<footer>
 			<a href="http://validator.w3.org/check/referer" title="Check the validity of this site&#8217;s HTML" class="zen-validate-html">HTML</a>
@@ -112,23 +105,39 @@
 
 			<div class="design-selection" id="design-selection">
 					<br/>
-					<h3 class="menu">Navigation</h3>
+					<h3 class="menu">Internal Links</h3>
 					<nav role="navigation">
 						<ul>  
-								<li class="next">
-										<a href="#zen-me" title="About Du Pham">
-											About me
-										</a>
-									</li>
 							<li class="next">
-								<a href="#zen-project1" title="Name of Project 1">
-									Driven lid cavity flow
-								</a>
-							</li>
+									<a href="#zen-me" title="About Du Pham">
+										About me
+									</a>
+								</li>
 							<li class="viewall">
 								<a href="#zen-project2" title="Name of Project 2">
 									Titanic (Kaggle)							</a>
 							</li>
+							<li class="next">
+									<a href="#zen-project1" title="Name of Project 1">
+										Driven lid cavity flow
+									</a>
+								</li>
+						</ul>
+					</nav>
+					<h3 class="menu">External Links</h3>
+					
+					<nav role="navigation">
+						<ul>  
+							<li class="next">
+									<a href="http://anzelpwj.github.io/" title="Paul Anzel">
+										Paul Anzel's portfolio
+									</a>
+								</li>
+							<li class="viewall">
+								<a href="http://zeta.math.utsa.edu/~ryp927/" title="My academic webpage">
+									My academic webpage							</a>
+							</li>
+
 						</ul>
 					</nav>
 				<!-- <h3 class="select">Select a Design:</h3>
