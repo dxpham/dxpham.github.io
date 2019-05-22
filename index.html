@@ -65,8 +65,8 @@
 						satisfying 
 
 					 
-										\[\begin{cases} & \mathbf{u}_t -\frac{1}{Re}\triangle \mathbf{u} +\mathbf{u} \cdot \nabla \mathbf{u} + \nabla  p = {\bf 0} \\ & \nabla\cdot \mathbf{u} = 0
-										\\ &  \text{Boundary + initial conditions}
+										\[\begin{cases} & \mathbf{u}_t -\frac{1}{Re}\triangle \mathbf{u} +\mathbf{u} \cdot \nabla \mathbf{u} + \nabla  p = {\bf 0}, \\ & \nabla\cdot \mathbf{u} = 0,
+										\\ &  \text{Boundary + initial conditions}.
 										\end{cases} \]
 							 The flow vanishes on the boundaries except at the top boundary where the horizontal velocity is one \(u=1,v=0\): 
 					</p>		 
@@ -80,11 +80,11 @@
 					<p>Given \(\mathbf{u}^n\), we find \(\mathbf{u}^{n+1}\) using projection fractional step method:</p>
 					<ul>
 						<li>Step 1: find \(\mathbf{u}^{n+\frac 12}\) solving 
-							\[\frac{\mathbf{u}^{n+\frac 12} - \mathbf{u}^n}{\triangle t} -\frac{1}{Re} \triangle \mathbf{u}^n + \mathbf{u}^n \cdot \nabla \mathbf{u}^n  \]
+							\[\frac{\mathbf{u}^{n+\frac 12} - \mathbf{u}^n}{\triangle t} -\frac{1}{Re} \triangle \mathbf{u}^n + \mathbf{u}^n \cdot \nabla \mathbf{u}^n =\mathbf{0}. \]
 						</li>
 						<li>Step 2: find \(\mathbf{u}^{n+1}\) from 
-								\[ \frac{\mathbf{u}^{n+1} - \mathbf{u}^{n+\frac12}}{\triangle t} = \frac{1}{Re}\nabla p^{n+1}\]
-								which we first find \(p^{n+1}\) by projecting the equation on the divergence free space: \[\triangle p^{n+1} = \frac{Re}{\triangle t } \nabla\cdot \textbf{u}^{n+\frac12}\] 
+								\[ \frac{\mathbf{u}^{n+1} - \mathbf{u}^{n+\frac12}}{\triangle t} = \frac{1}{Re}\nabla p^{n+1},\]
+								which we first find \(p^{n+1}\) by projecting the equation on the divergence free space: \[\triangle p^{n+1} = \frac{Re}{\triangle t } \nabla\cdot \textbf{u}^{n+\frac12}.\] 
 						   </li>
 					</ul>
 
@@ -126,14 +126,19 @@
 									</a>
 								</li>
 							<li class="viewall">
-								<a href="#zen-project2" title="Name of Project 2">
+								<a href="#zen-project2" title="ML from Titanic Disaster">
 									Titanic (Kaggle)							</a>
 							</li>
 							<li class="next">
-									<a href="#zen-project1" title="Name of Project 1">
+									<a href="#zen-project1" title="2D driven lip cavity flow">
 										Driven lid cavity flow
 									</a>
 								</li>
+								<!-- <li class="next">
+										<a href="#zen-project3" title="Graphs to latex">
+											Latex graphs ()
+										</a>
+									</li> -->
 						</ul>
 					</nav>
 					<h3 class="menu">External Links</h3>
@@ -152,32 +157,10 @@
 
 						</ul>
 					</nav>
-				<!-- <h3 class="select">Select a Design:</h3>
-				<nav role="navigation">
-					<ul>
-					<li>
-						<a href="/221/" class="design-name">Mid Century Modern</a> by						<a href="http://andrewlohman.com/" class="designer-name">Andrew Lohman</a>
-					</li>					<li>
-						<a href="/220/" class="design-name">Garments</a> by						<a href="http://danielmall.com/" class="designer-name">Dan Mall</a>
-					</li>					<li>
-						<a href="/219/" class="design-name">Steel</a> by						<a href="http://steffen-knoeller.de" class="designer-name">Steffen Knoeller</a>
-					</li>					<li>
-						<a href="/218/" class="design-name">Apothecary</a> by						<a href="http://trentwalton.com" class="designer-name">Trent Walton</a>
-					</li>					<li>
-						<a href="/217/" class="design-name">Screen Filler</a> by						<a href="http://elliotjaystocks.com/" class="designer-name">Elliot Jay Stocks</a>
-					</li>					<li>
-						<a href="/216/" class="design-name">Fountain Kiss</a> by						<a href="http://jeremycarlson.com" class="designer-name">Jeremy Carlson</a>
-					</li>					<li>
-						<a href="/215/" class="design-name">A Robot Named Jimmy</a> by						<a href="http://meltmedia.com/" class="designer-name">meltmedia</a>
-					</li>					<li>
-						<a href="/214/" class="design-name">Verde Moderna</a> by						<a href="http://www.mezzoblue.com/" class="designer-name">Dave Shea</a>
-					</li>					</ul>
-				</nav> -->
+				
 			</div>
 
-			<!-- <div class="design-menu" id="design-menu">
-				
-			</div> -->
+		
 
 			<!-- <div class="zen-resources" id="zen-resources">
 				<h3 class="resources">Resources:</h3>
