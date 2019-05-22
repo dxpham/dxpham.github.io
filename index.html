@@ -61,11 +61,11 @@
 								I was then able to predict the survival at a rate of 82.3% using a three-layer neural network on Kaggle and 89% using test data. My result using neural network performs better than the traditional statistical methods (decision tree, logistic regression, ...) which could get to  78% even for this not so large size data set.</p>
 						</div>
 					<h3>&#9755; 2D Lid Driven Fluid Flow</h3>
-					<p >In this project we solve the Navier Stokes equations on a rectangular domain: we seek numerical solution of the velocity of a fluid flow body \({\bf u} =(u,v)\) and its the pressure \(p\)
+					<p >In this project we solve the Navier Stokes equations on a rectangular domain: we seek numerical solution of the velocity of a fluid flow body \(\mathbf{u} =(u,v)\) and its the pressure \(p\)
 						satisfying 
 
 					 
-										\[\begin{cases} & {\bf u}_t -\frac{1}{Re}\triangle {\bf u} +{\bf u} \cdot \nabla {\bf u} + \nabla  p = {\bf 0} \\ & \nabla\cdot {\bf u} = 0
+										\[\begin{cases} & \mathbf{u}_t -\frac{1}{Re}\triangle \mathbf{u} +\mathbf{u} \cdot \nabla \mathbf{u} + \nabla  p = {\bf 0} \\ & \nabla\cdot \mathbf{u} = 0
 										\\ &  \text{Boundary + initial conditions}
 										\end{cases} \]
 							 The flow vanishes on the boundaries except at the top boundary where the horizontal velocity is one \(u=1,v=0\): 
@@ -77,8 +77,18 @@
 											Sorry, your browser does not support inline SVG.  
 										  </svg>
 										 			 -->
-							 
+					<p>Given \(\mathbf{u}^n\), we find \(\mathbf{u}^{n+1}\) using projection fractional step method:</p>
+					<ul>
+						<li>Step 1: find \(\mathbf{u}^{n+\frac 12}\) solving 
+							\[\frac{\mathbf{u}^{n+\frac 12} - \mathbf{u}^n}{\triangle t} -\frac{1}{Re} \triangle \mathbf{u}^n + \mathbf{u}^n \cdot \nabla \mathbf{u}^n  \]
+						</li>
+						<li>Step 2: find \(\mathbf{u}^{n+1}\) from 
+								\[ \frac{\mathbf{u}^{n+1} - \mathbf{u}^{n+\frac12}}{\triangle t} = \frac{1}{Re}\nabla p^{n+1}\]
+								which we first find \(p^{n+1}\) by projecting the equation on divergence free space: \[\triangle p^{n+1} = \frac{1}{\triangle t Re} \nabla\cdot \textbf{u}^{n+\frac12}\] 
+						   </li>
+					</ul>
 
+					<p>I implement this method projection in time combined with finite difference in space using Fortran. Please look at  <a href="https://github.com/dxpham">My Github Profile</a> for the implemetation in Fortran, which you should be familiar with the make file and Gnuplot.</p>
 						
 					
 				

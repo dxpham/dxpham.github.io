@@ -143,7 +143,15 @@ header {
 	height: auto;
 	padding-left: 150px;
 	}
-
+.supporting ul { 
+	font: 115% Georgia, Palatino, Times, Times New Roman, serif; 
+	line-height: 1.5;
+	margin-top: 0px; 
+	text-align: justify;
+	padding-left: 14px;
+	padding-bottom: 10px;
+	padding-right: 100px;
+	}
 /* ~~~ Header Properties ~~~ */
 
 h3 {
