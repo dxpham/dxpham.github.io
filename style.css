@@ -1,21 +1,12 @@
-/* css Zen Garden submission 194 - 'Dark Rose', by Rose Fu, http://www.rosefu.net/ */
-/* css released under Creative Commons License - http://creativecommons.org/licenses/by-nc-sa/1.0/  */
-/* All associated graphics copyright 2006, Rose Fu */
-/* Added: February 15th, 2006 */
-
-
-/* IMPORTANT */
-/* This design is not a template. You may not reproduce it elsewhere without the 
-   designer's written permission. However, feel free to study the CSS and use 
-   techniques you learn from it elsewhere. */
-
-
-/* ~~~ General Properties ~~~ */
 
 * {
 	padding: 0;
 	margin: 0;
+
 	}
+  
+
+
 
 body { 
 	color: #64645A; 
@@ -255,8 +246,8 @@ h3 {
 	height: 31px;
 	position: relative;
 	top: 40px;
-	left: 0px;
-	font: 150% Georgia, Palatino, Times, Times New Roman, serif; 
+	left: -5px;
+	font: 140% Georgia, Palatino, Times, Times New Roman, serif; 
 	}
 
 .design-selection li a.designer-name {
@@ -348,3 +339,5 @@ footer {
 .extra1, .extra2, .extra3, .extra4, .extra5, .extra6 {
 	display: none;
 	}
+
+
