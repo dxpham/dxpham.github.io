@@ -1,0 +1,395 @@
+<style>
+    /*Du add here */
+    h1, h2, h3, h4, h5, h6 {
+        color: #3c3b3b;
+        font-family: "Raleway", Helvetica, sans-serif;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        line-height: 1.5;
+        margin: .7em 0 2em 0;
+        text-transform: uppercase;
+    }
+    a {
+        -moz-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        -webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        -ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        transition: color 0.2s ease, border-bottom-color 0.2s ease;
+        border-bottom: dotted 1px rgba(160, 160, 160, 0.65);
+        color: inherit;
+        text-decoration: none;
+    }
+
+        a:before {
+            -moz-transition: color 0.2s ease;
+            -webkit-transition: color 0.2s ease;
+            -ms-transition: color 0.2s ease;
+            transition: color 0.2s ease;
+        }
+
+        a:hover {
+            border-bottom-color: transparent;
+            color: #2ebaae !important;
+        }
+
+            a:hover:before {
+                color: #2ebaae !important;
+            }
+    #header {
+        display: -moz-flex;
+        display: -webkit-flex;
+        display: -ms-flex;
+        display: flex;
+        -moz-justify-content: space-between;
+        -webkit-justify-content: space-between;
+        -ms-justify-content: space-between;
+        justify-content: space-between;
+        background-color: #ffffff;
+        border-bottom: solid 1px rgba(160, 160, 160, 0.3);
+        height: 3.5em;
+        left: 0;
+        line-height: 3.5em;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10000;
+    }
+
+        #header a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        #header ul {
+            list-style: none;
+            margin: 0;
+            padding-left: 0;
+        }
+
+            #header ul li {
+                display: inline-block;
+                padding-left: 0;
+            }
+
+        #header h1 {
+            height: inherit;
+            line-height: inherit;
+            padding: 0 0 0 .4em;
+            white-space: nowrap;
+        }
+
+            #header h1 a {
+                font-size: 0.4em;
+                line-height: 1;
+                margin: 0 0 0 0;
+                padding-left: 1em;
+            }
+
+        #header .links {
+            -moz-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            border-left: solid 1px rgba(160, 160, 160, 0.3);
+            height: inherit;
+            line-height: inherit;
+            margin-left: 1.5em;
+            overflow: hidden;
+            padding-left: 1.5em;
+        }
+
+            #header .links ul li {
+                border-left: solid 1px rgba(160, 160, 160, 0.3);
+                line-height: 1;
+                margin-left: 1em;
+                padding-left: 1em;
+            }
+
+                #header .links ul li:first-child {
+                    border-left: 0;
+                    margin-left: 0;
+                    padding-left: 0;
+                }
+
+                #header .links ul li a {
+                    border-bottom: 0;
+                    font-family: "Raleway", Helvetica, sans-serif;
+                    font-size: 0.7em;
+                    font-weight: 400;
+                    letter-spacing: 0.25em;
+                    text-transform: uppercase;
+                }
+
+        #header .main {
+            height: inherit;
+            line-height: inherit;
+            text-align: right;
+        }
+
+            #header .main ul {
+                height: inherit;
+                line-height: inherit;
+            }
+
+                #header .main ul li {
+                    border-left: solid 1px rgba(160, 160, 160, 0.3);
+                    height: inherit;
+                    line-height: inherit;
+                    white-space: nowrap;
+                }
+
+                    #header .main ul li > * {
+                        display: block;
+                        float: left;
+                    }
+
+                    #header .main ul li > a {
+                        text-decoration: none;
+                        border-bottom: 0;
+                        color: #aaaaaa;
+                        overflow: hidden;
+                        position: relative;
+                        text-indent: 4em;
+                        width: 4em;
+                    }
+
+                        #header .main ul li > a:before {
+                            -moz-osx-font-smoothing: grayscale;
+                            -webkit-font-smoothing: antialiased;
+                            display: inline-block;
+                            font-style: normal;
+                            font-variant: normal;
+                            text-rendering: auto;
+                            line-height: 1;
+                            text-transform: none !important;
+                            font-family: 'Font Awesome 5 Free';
+                            font-weight: 900;
+                        }
+
+                        #header .main ul li > a:before {
+                            display: block;
+                            height: inherit;
+                            left: 0;
+                            line-height: inherit;
+                            position: absolute;
+                            text-align: center;
+                            text-indent: 0;
+                            top: 0;
+                            width: inherit;
+                        }
+
+        #header form {
+            margin: 0;
+        }
+
+            #header form input {
+                display: inline-block;
+                height: 2.5em;
+                position: relative;
+                top: -2px;
+                vertical-align: middle;
+            }
+
+        #header #search {
+            -moz-transition: all 0.5s ease;
+            -webkit-transition: all 0.5s ease;
+            -ms-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            padding: 0;
+            white-space: nowrap;
+        }
+
+            #header #search input {
+                width: 12em;
+            }
+
+            #header #search.visible {
+                max-width: 12.5em;
+                opacity: 1;
+                padding: 0 0.5em 0 0;
+            }
+
+    @media screen and (max-width: 980px) {
+
+        #header .links {
+            display: none;
+        }
+    }
+
+    @media screen and (max-width: 736px) {
+
+        #header {
+            height: 2.75em;
+            line-height: 2.75em;
+        }
+
+            #header h1 {
+                padding: 0 0 0 1em;
+            }
+
+            #header .main .search {
+                display: none;
+            }
+    }
+</style>
+
+<!-- Header -->
+<header id="header">
+    <h1>
+        <a href="index.html">
+            DU PHAM'S PORTFOLIO
+        </a>
+    </h1>
+    <nav class="links">
+        <ul>
+            <li><a href="single.html">Project 1</a></li>
+            <li><a href="#">Project 2</a></li>
+            <li><a href="#">Project 3</a></li>
+            <li><a href="#">Resume</a></li>
+            <li><a href="#">About Me</a></li>
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="#">
+                    <input type="text" name="query" placeholder="Search" />
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+
+<!-- Actions -->
+<section>
+    <br />
+    <br />
+    <br />
+    <br /> <br />
+    <br />
+</section>
+
+
+
+
+    <div>
+        <div style="clear:both;">
+            <p style="margin-left: 0pt; margin-top: 1em; margin-bottom: 0pt; font-size: 9pt;"><span style="height:0pt; display:block; position:absolute; z-index:-65537;"><img src="images/resume-du.001.png" width="763" height="1011" alt="" style="margin: 0 0 0 auto; text-align: right; display: block; "></span><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+        </div>
+        <body style="position: fixed; /* center the element */ right: 0; left: 0; margin-right: auto; margin-left: auto; /* give it dimensions */ min-height: 10em; width: 8.5in;">
+            <table cellpadding="0" cellspacing="0" style="width:549pt; margin-right:9pt; margin-left:9pt; border-collapse:collapse; float:left;">
+                <tbody>
+                    <tr style="height:220.5pt;">
+                        <td style="width:168.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:bottom;">
+                            <p style="margin-top:0pt; margin-bottom:0pt; text-align:center; font-size:9pt;">
+                                <img src="https://myfiles.space/user_files/92791_cf8435c7f99c1a39/1627165051_resume-du/1627165051_resume-du.002.png" width="225" height="238" alt="A person wearing glasses
+
+Description automatically generated with low confidence">
+                            </p>
+                        </td>
+                        <td style="width:24.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                        </td>
+                        <td style="width:321.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:bottom;">
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:48pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase;">DU</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:48pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase;">Pham</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:16pt;"><span style="font-family:'Century Gothic'; letter-spacing:0.75pt;">Data Analys</span><span style="font-family:'Century Gothic'; letter-spacing:0.2pt;">t</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:168.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <h3 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase; color:#548ab7;">Profile</span></h3>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;">
+                                <span style="font-family:'Century Gothic';">
+                                    An applied mathematician who is passionate about Data
+                                    Analysis and has experience collecting, transforming, and organizing data for
+                                    analysis to help make informed decisions. Excellent understanding and
+                                    proficiency of platforms for effective data analyses, including SQL,
+                                    spreadsheets, Tableau, Python, and R. Strong communication, organizing, and
+                                    excellent analytical skills.
+                                </span>
+                            </p>
+                            <h3 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase; color:#548ab7;">Contact</span></h3>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">PHONE:</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">812-320-1882</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">WEBSITE:</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><a href="https://dxpham.github.io/" style="text-decoration:none;"><span style="font-family:'Century Gothic'; ">https://dxpham.github.io/</span></a></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">EMAIL:</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><a href="mailto:dxpham@gmail.com" style="text-decoration:none;"><span style="font-family:'Century Gothic'; ">dxpham@gmail.com</span></a></p>
+                            <h3 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase; color:#548ab7;">data analytical skills</span></h3>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Data analysis, data cleaning, data visualization</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Data-driven decision making</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Effective presentations</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Descriptive and Inferential Statistics</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Linear/Logistic Regressions</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">R, Python, Fortran, C++ programming</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Calculation and analysis in SQL, spreadsheets</span></p>
+                            <p style="margin-top:0pt; margin-bottom:3pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Machine learning: Mxnet, Tensor Flow</span></p>
+                        </td>
+                        <td style="width:24.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                        </td>
+                        <td style="width:31.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <h2 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; border-bottom:1pt solid #94b6d2; padding-bottom:1pt; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase;">EDUCATION</span></h2>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></h4>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Coursera 2021, Online</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">06/2021&ndash;07/2021: Google Data Analytics Certificate.</span><span style="font-family:'Century Gothic';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="https://coursera.org/share/161b7447399d966d2ae7ad22f6227a42" style="text-decoration:none;"><span style="font-family:'Century Gothic'; ">View Certificate</span></a></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">05/2021&ndash;06/2021: Statistics with Python Specialization.</span><span style="font-family:'Century Gothic';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="https://coursera.org/share/5ba9aeca407fe0f96adccd1dcc277201" style="text-decoration:none;"><span style="font-family:'Century Gothic'; ">View Certificate</span></a><span style="font-family:'Century Gothic';"></span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">07/2021&ndash;current: Data Visualization &amp; Dashboarding with R Specialization.</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">06/2021&ndash;06/2021: Calculating Descriptive Statistics in R.</span><span style="font-family:'Century Gothic';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><a href="https://coursera.org/share/d52063164c7f0620cbde5ee6f2f4f9fb" style="text-decoration:none;"><span style="font-family:'Century Gothic'; ">View Certificate</span></a><span style="font-family:'Century Gothic';"></span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Udemy 2021, Online</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Statistics for Science and Business Analysis.</span><span style="font-family:'Century Gothic';">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp </span><a href="https://www.udemy.com/certificate/UC-5b822660-266f-4158-8148-a47c6ee266fe/" style="text-decoration:none;"><span style="font-family:'Century Gothic'; ">View Certificate</span></a><span style="font-family:'Century Gothic';"></span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Indiana University &ndash; Bloomington, Indiana</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">08/2001 &ndash; 05/2007</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Ph.D. in Applied Mathematics with minor in Scientific Computing.</span></p>
+                            <h2 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; border-bottom:1pt solid #94b6d2; padding-bottom:1pt; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase;">WORK EXPERIENCE</span></h2>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></h4>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">University of California &ndash; Davis, California:</span><span style="font-family:'Century Gothic';">&nbsp;&nbsp;</span><span style="font-family:'Century Gothic';">Pre-Six Lecturer</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">07/2019 &ndash; 09/2021</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Teaching large sections of Calculus courses.&nbsp;</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">The University of Texas at San Antonio, Texas:</span><span style="font-family:'Century Gothic';">&nbsp;&nbsp;</span><span style="font-family:'Century Gothic';">Assistant Professor</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">01/2015 &ndash; 07/2019</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Teaching two courses per semester and research work.&nbsp;</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Indiana University &ndash; Bloomington, Indiana: Visiting Assistant Professor</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">06/2013 &ndash; 12/2014</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Teaching a course per semester and research work.&nbsp;</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Butler University &ndash; Indianapolis, Indiana: Mathematics Instructor</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">08/2009 &ndash; 01/2013</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Teaching three to four courses per semester.&nbsp;</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                            <h4 style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Colorado State University &ndash; Fort Collins, Colorado: Postdoctoral Fellow</span></h4>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">08/2007 &ndash; 08/2009</span></p>
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">Teaching a course per semester and research work.&nbsp;</span></p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width:168.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <h3 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase; color:#548ab7;">&nbsp;</span></h3>
+                        </td>
+                        <td style="width:24.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+                        </td>
+                        <td style="width:321.5pt; padding-right:5.75pt; padding-left:5.75pt; vertical-align:top;">
+                            <h2 style="margin-top:12pt; margin-bottom:6pt; page-break-inside:avoid; page-break-after:avoid; border-bottom:1pt solid #94b6d2; padding-bottom:1pt; font-size:11pt;"><span style="font-family:'Century Gothic'; text-transform:uppercase;">&nbsp;</span></h2>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <p style="margin-top:0pt; margin-bottom:0pt; font-size:9pt;"><span style="font-family:'Century Gothic';">&nbsp;</span></p>
+
+        </body>
+    </div>
