@@ -220,7 +220,7 @@
     }
 
     function drawLineChart(data) {
-        d3.select("#lineTitle").text(data.Country+"'s GDP" );
+        d3.select("#lineTitle").text(data["Country Code"]+"'s GDP History" );
         data = data.history;
         /* console.log(data) */
         let margin = { left: 40, bottom: 20, right: 20, top: 20 }
