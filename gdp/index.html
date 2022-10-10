@@ -1,0 +1,271 @@
+<html>
+
+<head>
+    <style>
+        body {
+            margin: auto;
+width: 900px;
+/* border: 5px solid #FFFF00;
+border-radius: 20px 20px 20px 20px;
+padding: 10px; */
+  /* background: rgba(137, 107, 107, 0.739); */
+  background-image:linear-gradient(180deg,#53562ec5,#b2b2b264);
+}
+
+
+
+.chart-container 
+{ 
+    display: flex;  
+    /* font-family: Brush Script Std, Brush Script MT, cursive ; */
+    font-variant: small-caps;
+  /* flex: 50%; or - flex: 0 50% - or - flex-basis: 50% - */
+  flex-direction: row;
+  /*demo*/
+  background:#9a9a9a;
+  box-shadow: 0 15px 0 0px #005cd4a2;
+  border-radius: 0px 0px 20px 20px;
+}
+.child1 {
+            width: 50%;
+            min-height: 520px;
+            height: 70vh;
+            background-image:linear-gradient(180deg,#345567a8,#b2b2b264);
+            text-align: center;
+            color: white;
+            
+        }
+  
+.child2 {
+    width: 50%;
+    color: rgb(0, 255, 8);
+    height: 100vh;
+}
+
+
+.content {
+  max-width: 1200px;
+  margin: auto;
+  /* background: white; */
+  padding: 10px;
+  border-radius: 20px 20px 20px 20px;
+padding: 10px; 
+}
+
+
+        svg {
+            border: solid 1px rgb(144, 144, 144);
+            margin-top: 10px;
+            background: #d2d2d2;
+            border-radius: 10px 10px 10px 10px;
+        }
+
+        #tooltip {
+            font-family: cursive;
+            font-weight:600;
+            border: solid 1px rgb(158, 158, 158);
+            color:rgb(246, 245, 245);
+            padding: 3px;
+            position: absolute; /*allowing it to move*/
+            display: none;
+            background-color:rgba(255, 0, 0, 0.895) ;
+            border-radius: 3px 3px 3px 3px;
+        }
+        #timeline {
+            fill: none;
+            /* stroke: rgb(100, 100, 100) */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="chart-container ">
+    <div class="child1">
+        <h1> Top GDP Averages</h1>
+        
+        <svg id="barchart">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(255, 0, 0, 0.678);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(255, 255, 255, 0.781);stop-opacity:1" />
+                  </linearGradient>
+                  <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(255, 0, 0, 0.694);stop-opacity:1" />
+                  </linearGradient>
+            </defs>
+            
+            <g class="body" />
+        </svg>
+        <p> <b> Mouse over the bars</b> for history graphs of GPD of each country! Data is on the time interval from 1990 to 2021.</p>
+    </div>
+    <div class="child1">
+        <h1> GDP vs Time </h1>
+        <svg id="timeline">
+
+            <g class="xAxis" />
+            <g class="yAxis" />
+            <g class="body">
+                <path style="stroke: rgb(255, 0, 0); stroke-width: 2.5 "  />
+            </g>
+        </svg>
+        
+    </div>
+        
+    </div>
+    <div id="tooltip">Tooltip</div>
+</body>
+<script src="d3.js"></script>
+<script>
+    let barchart = d3.select("#barchart")
+
+    let width = 400;
+    let height = 300;
+
+    barchart.attr("height", height)
+    barchart.attr("width", width)
+
+    let timeline = d3.select("#timeline")
+    
+    timeline.attr("height", height)
+    timeline.attr("width", width)
+
+    let selectedCountry = undefined;
+
+    d3.csv("./gdp.csv")
+        .then((data) => {
+            data = data.map(d => {
+                let s = 0;
+                for(let i=1990;i<2022 ; i++){ s += +d[""+i]};
+                d["avg"] = s/(2022-1990);
+                return d
+            })
+            // console.log(data)
+            data = prepareData(data)
+            drawBarChart(data)
+        })
+
+
+    
+
+    function drawBarChart(data) {
+        let margin = { left: 20, bottom: 20, right: 20, top: 20 }
+
+        let bodyWidth = width - margin.left - margin.right;
+        let bodyHeight = height - margin.top - margin.bottom;
+
+        let xScale = d3.scaleBand()
+            .range([0, bodyWidth])
+            .domain(data.map(d => d.Country))
+            .padding(0.2)
+
+        let yScale = d3.scaleLinear()
+            .range([bodyHeight, 0])
+            .domain([0, d3.max(data, d => d.avg)])
+
+        barChartBody = barchart.select(".body")
+            .attr("transform", `translate(${margin.left},${margin.bottom})`)
+            .selectAll("rect")
+            .data(data)
+
+        barChartBody.enter()
+            .append("rect")
+            .attr("fill", "url(#grad1)")
+            .attr("width", xScale.bandwidth())
+            .attr("height", d => bodyHeight - yScale(d.avg))
+            .attr("y", d => yScale(d.avg))
+            .attr("x", d => xScale(d.Country))
+            // .on("mouseenter", d => {showTooltip(d.Country+": " +(Math.round(d.avg/10**11)/10).toLocaleString()+"T",[d3.event.clientX,yScale(d.avg)])})
+            // .on("mousemove", d => {showTooltip(d.Country+": "+ (Math.round(d.avg/10**11)/10).toLocaleString()+"T",[d3.event.clientX,yScale(d.avg)])})
+            .on("mouseleave", d => {d3.select("#tooltip").style("display","none")})
+            .on("mouseover", d=>{ // click to view data on the next graph
+                showTooltip(d.Country+": $" +(Math.round(d.avg/10**11)/10).toLocaleString()+"T",[d3.event.clientX,yScale(d.avg)]);
+                selectedCountry = d.Country;
+                drawBarChart(data);
+                // console.log(d)
+                drawLineChart(d)//find(v => v.Country === selectedCountry))
+            } )
+            
+            .merge(barChartBody)
+            .attr("fill", d => d.Country === selectedCountry ? "url(#grad2)" : "url(#grad1)")
+
+
+    }
+    function showTooltip(text, coords) {
+        d3.select("#tooltip").text(text)
+            .style("top",coords[1]+65)
+            .style("left",coords[0])
+            .style("display","block")
+            
+        
+    }
+
+    function drawLineChart(data) {
+        data = data.history;
+        /* console.log(data) */
+        let margin = { left: 40, bottom: 20, right: 20, top: 20 }
+
+        let bodyWidth = width - margin.left - margin.right;
+        let bodyHeight = height - margin.top - margin.bottom;
+
+        let xScale = d3.scaleLinear()
+            .range([0, bodyWidth])
+            .domain(d3.extent(data, d => d.year))
+
+        let yScale = d3.scaleLinear()
+            .range([bodyHeight, 0])
+            .domain([0, d3.max(data, d => d.value)])
+
+        let lineGenerator = d3.line()
+            .x(d => xScale(d.year))
+            .y(d => yScale(d.value))
+            .defined(d => !!d.value)
+            
+
+        /* timeline = d3.select("#timeline") */
+
+        timeline.select(".body")
+            .attr("transform", `translate(${margin.left},${margin.top})`)
+            .select("path").datum(data)
+            .transition()
+            .duration(900)
+            .attr("d", lineGenerator)
+
+        timeline.select(".xAxis")
+            .attr("transform", `translate(${margin.left},${height - margin.bottom})`)
+            .call(d3.axisBottom(xScale).ticks(5))
+
+        timeline.select(".yAxis")
+            .attr("transform", `translate(${margin.left},${margin.top})`)
+            .transition()
+            .duration(200)
+            .call(d3.axisLeft(yScale).ticks(5).tickFormat(d => (d / 1e12) + "T"))
+
+    }
+
+    function prepareData(data) {
+        return data.map(d => {
+        
+            let years = Object.keys(d).filter(k => !isNaN(+k))
+
+            let history= years.map( y => ({
+                year:+y,
+                value: +d[y]
+            }))
+            d.history = history;
+            
+            // d["history"] = []
+            // for (let year of years) {
+            //     d["history"].push({
+            //         year: year,
+            //         value: +d[year]
+            //     })
+            // }
+            // d.avg = +d.avg
+            return d;
+        })
+    }
+</script>
+
+</html>
