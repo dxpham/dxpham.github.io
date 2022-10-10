@@ -4,62 +4,75 @@
     <style>
         body {
             margin: auto;
-width: 900px;
-height: 100%;
-/* border: 5px solid #FFFF00;
-border-radius: 20px 20px 20px 20px;
-padding: 10px; */
-  /* background: rgba(137, 107, 107, 0.739); */
-  background-image:linear-gradient(180deg,#9ca358c5,#efeeee9d);
-}
+            width: 900px;
+            height: 100%;
+            /* border: 5px solid #FFFF00;
+            border-radius: 20px 20px 20px 20px;
+            padding: 10px; */
+            /* background: rgba(137, 107, 107, 0.739); */
+            background-image:linear-gradient(180deg,#9ca358c5,#efeeee9d);
+            }
 
 
 
-.chart-container 
-{ 
-    display: flex;  
-    /* font-family: Brush Script Std, Brush Script MT, cursive ; */
-    font-variant: small-caps;
-  /* flex: 50%; or - flex: 0 50% - or - flex-basis: 50% - */
-  flex-direction: row;
-  /*demo*/
-  background:#9a9a9a;
-  box-shadow: 0 15px 0 0px #005cd4a2;
-  border-radius: 0px 0px 20px 20px;
-}
-.child1 {
-            width: 50%;
-            min-height: 520px;
-            height: 70vh;
-            background-image:linear-gradient(180deg,#406a80a8,#cdcdcd64);
-            text-align: center;
-            color: white;
-            
+        .chart-container 
+        { 
+            display: flex;  
+            /* font-family: Brush Script Std, Brush Script MT, cursive ; */
+            font-variant: small-caps;
+        /* flex: 50%; or - flex: 0 50% - or - flex-basis: 50% - */
+        flex-direction: row;
+        padding-left: 20px;
+        padding-right: 20px;
+        /* background:#9a9a9a; */
+        box-shadow: 0 15px 0 1px #d40000a2;
+        border-radius: 0px 0px 20px 20px; */
         }
-  
-.child2 {
-    width: 50%;
-    color: rgb(0, 255, 8);
-    height: 100vh;
-}
+        .child1 {
+                    width: 50%;
+                    min-height: 520px;
+                    height: 70vh;
+                    /* background-image:linear-gradient(180deg,#406a80a8,#cdcdcd64); */
+                    text-align: center;
+                    /* color: white; */
+                    
+                }
+        
+        .child2 {
+            width: 50%;
+            c       olor: rgb(0, 255, 8);
+            height: 100vh;
+        }
 
-
-.content {
-  max-width: 1200px;
-  margin: auto;
-  /* background: white; */
-  padding: 10px;
-  border-radius: 20px 20px 20px 20px;
-padding: 10px; 
-}
+        /* 
+        .content {
+        max-width: 1200px;
+        margin: auto;
+        
+        padding: 10px;
+        border-radius: 20px 20px 20px 20px;
+        padding: 10px; 
+        } */
 
 
         svg {
-            border: solid 1px rgb(144, 144, 144);
+            /* border: solid 1px rgba(70, 0, 0, 0.587); */
             margin-top: 10px;
-            background: #d2d2d2;
+            /* background: #d2d2d2; */
             border-radius: 10px 10px 10px 10px;
+            
         }
+        
+        .axisRed line{
+        stroke: red;
+        }
+        .axisRed path{
+        stroke: red;
+        }
+        .axisRed text{
+        fill: rgba(255, 0, 0, 0.645);
+        }  
+  
 
         #tooltip {
             font-family: cursive;
@@ -105,8 +118,8 @@ padding: 10px;
         <h1> GDP vs Time </h1>
         <svg id="timeline">
 
-            <g class="xAxis" />
-            <g class="yAxis" />
+            <g class="xAxis" style=" stroke:rgb(255, 0, 0);  stroke-width: 0.3;"> </g>
+            <g class="yAxis" style=" stroke:rgb(255, 0, 0); stroke-width: 0.3"> </g>
             <g class="body">
                 <path style="stroke: rgb(255, 0, 0); stroke-width: 2.5 "  />
             </g>
@@ -234,10 +247,12 @@ padding: 10px;
             .attr("d", lineGenerator)
 
         timeline.select(".xAxis")
+            .attr("class", "axisRed")
             .attr("transform", `translate(${margin.left},${height - margin.bottom})`)
             .call(d3.axisBottom(xScale).ticks(5))
 
         timeline.select(".yAxis")
+            .attr("class", "axisRed")
             .attr("transform", `translate(${margin.left},${margin.top})`)
             .transition()
             .duration(200)
