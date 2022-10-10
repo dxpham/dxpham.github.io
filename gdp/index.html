@@ -115,7 +115,7 @@
         <p> <b> Mouse over the bars</b> for history graphs of GPD of each country! Data is on the time interval from 1990 to 2021.</p>
     </div>
     <div class="child1">
-        <h1> GDP vs Time </h1>
+        <h1 id="lineTitle">  GDP vs Time </h1>
         <svg id="timeline">
 
             <g class="xAxis" style=" stroke:rgb(255, 0, 0);  stroke-width: 0.3;"> </g>
@@ -145,7 +145,8 @@
     timeline.attr("height", height)
     timeline.attr("width", width)
 
-    let selectedCountry = undefined;
+    let selectedCountry = null;
+
 
     d3.csv("./gdp.csv")
         .then((data) => {
@@ -157,7 +158,10 @@
             })
             // console.log(data)
             data = prepareData(data)
+            // console.log(data[0])
+            drawLineChart(data[0])
             drawBarChart(data)
+            // drawLineChart("United States")
         })
 
 
@@ -216,6 +220,7 @@
     }
 
     function drawLineChart(data) {
+        d3.select("#lineTitle").text(data.Country+"'s GDP" );
         data = data.history;
         /* console.log(data) */
         let margin = { left: 40, bottom: 20, right: 20, top: 20 }
