@@ -31,7 +31,7 @@
         padding-right: 20px;
         /* background:#9a9a9a; */
         box-shadow: 0 15px 0 1px #d40000a2;
-        border-radius: 0px 0px 20px 20px; */
+        border-radius: 0px 0px 20px 20px; 
         }
         .child1 {
                     width: 50%;
@@ -45,7 +45,7 @@
         
         .child2 {
             width: 50%;
-            c       olor: rgb(0, 255, 8);
+            color: rgb(0, 255, 8);
             height: 100vh;
         }
 
@@ -69,10 +69,10 @@
         }
         
         .axisRed line{
-        stroke: red;
+        stroke: rgb(151, 0, 0);
         }
         .axisRed path{
-        stroke: red;
+        stroke: rgb(160, 0, 0);
         }
         .axisRed text{
         fill: rgba(255, 0, 0, 0.645);
@@ -111,7 +111,7 @@
                   </linearGradient>
                   <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgba(255, 0, 0, 0.694);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(199, 0, 0, 0.733);stop-opacity:1" />
                   </linearGradient>
             </defs>
             
@@ -122,11 +122,14 @@
     <div class="child1">
         <h1 id="lineTitle">  GDP vs Time </h1>
         <svg id="timeline">
-
-            <g class="xAxis" style=" stroke:rgb(255, 0, 0);  stroke-width: 0.3;"> </g>
-            <g class="yAxis" style=" stroke:rgb(255, 0, 0); stroke-width: 0.3"> </g>
+            <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(255, 0, 0);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(178, 0, 0);stop-opacity:1" />
+              </linearGradient>
+            <g class="xAxis" style=" stroke:rgb(50, 0, 0);  stroke-width: 0.3;"> </g>
+            <g class="yAxis" style=" stroke:rgb(50, 1, 1); stroke-width: 0.3"> </g>
             <g class="body">
-                <path style="stroke: rgb(255, 0, 0); stroke-width: 2.5 "  />
+                <path stroke="url(#grad3)" stroke-width="3"  />
             </g>
         </svg>
         
