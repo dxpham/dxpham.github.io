@@ -4,63 +4,85 @@
     <style>
         body {
             margin: auto;
-width: 900px;
-height: 100%;
-/* border: 5px solid #FFFF00;
-border-radius: 20px 20px 20px 20px;
-padding: 10px; */
-  /* background: rgba(137, 107, 107, 0.739); */
-  background-image:linear-gradient(180deg,#9ca358c5,#efeeee9d);
-}
+            width: 900px;
+            height: 100%;
+            /* border: 5px solid #FFFF00;
+            border-radius: 20px 20px 20px 20px;
+            padding: 10px; */
+            background: rgba(35, 37, 63, 0.823);
+            /* background-image:linear-gradient(135deg, lightgray,lightgreen,#ffad9e);linear-gradient(180deg,#c3b9ae,#efeeee9d); */
+            }
+            h1 {
+            font-size:45px;
+            background: -webkit-linear-gradient(270deg,#5e0000, rgb(255, 0, 0));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            }
 
 
-
-.chart-container 
-{ 
-    display: flex;  
-    /* font-family: Brush Script Std, Brush Script MT, cursive ; */
-    font-variant: small-caps;
-  /* flex: 50%; or - flex: 0 50% - or - flex-basis: 50% - */
-  flex-direction: row;
-  padding-left: 20px;
-  padding-right: 20px;
-  /* background:#9a9a9a; */
-  box-shadow: 0 15px 0 1px #d40000a2;
-  border-radius: 0px 0px 20px 20px; */
-}
-.child1 {
-            width: 50%;
-            min-height: 520px;
-            height: 70vh;
-            /* background-image:linear-gradient(180deg,#406a80a8,#cdcdcd64); */
-            text-align: center;
-            /* color: white; */
-            
+        .chart-container 
+        { 
+            display: flex;  
+            /* font-family: Brush Script Std, Brush Script MT, cursive ; */
+            font-variant: small-caps;
+        /* flex: 50%; or - flex: 0 50% - or - flex-basis: 50% - */
+        flex-direction: row;
+        padding-left: 0px;
+        padding-right: 0px;
+        /* background:#9a9a9a; */
+        box-shadow: 0 15px 0 1px #d40000a2;
+        border-radius: 0px 0px 20px 20px; 
         }
-  
-.child2 {
-    width: 50%;
-    color: rgb(0, 255, 8);
-    height: 100vh;
-}
+        .child1 {
+                    width: 50%;
+                    min-height: 520px;
+                    height: 70vh;
+                    background-image:linear-gradient(180deg,#dbdbdb09,#cdcdcd,#fffefe,#dcdcf9);
+                    text-align: center;
+                    border-radius: 0px 0px 0 20px;
+                    /* color: white; */
+                    
+                }
+        
+        .child2 {
+            width: 50%;
+                    min-height: 520px;
+                    height: 70vh;
+                    background-image:linear-gradient(180deg,#dbdbdb09,#cdcdcd,#fffefe,#dcdcf9);
+                    text-align: center;
+                    border-radius: 0px 0px 20px 0;
+        }
 
-/* 
-.content {
-  max-width: 1200px;
-  margin: auto;
-  
-  padding: 10px;
-  border-radius: 20px 20px 20px 20px;
-padding: 10px; 
-} */
+        /* 
+        .content {
+        max-width: 1200px;
+        margin: auto;
+        
+        padding: 10px;
+        border-radius: 20px 20px 20px 20px;
+        padding: 10px; 
+        } */
 
 
         svg {
-            border: solid 1px rgb(144, 144, 144);
+            /* border: solid 1px rgba(70, 0, 0, 0.587); */
             margin-top: 10px;
-            background: #d2d2d2;
+            /* background: #d2d2d2; */
             border-radius: 10px 10px 10px 10px;
+            
         }
+        
+        .xAxis line,.yAxis line{
+        stroke: rgb(151, 60, 0);
+        }
+        .xAxis path,.yAxis path{
+        stroke: rgb(160, 0, 0);
+        }
+        .xAxis text,.yAxis text{
+        fill: rgb(194, 0, 0);
+        }  
+  
 
         #tooltip {
             font-family: cursive;
@@ -90,11 +112,11 @@ padding: 10px;
             <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" style="stop-color:rgba(255, 0, 0, 0.678);stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgba(255, 255, 255, 0.781);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(255, 217, 217, 0.781);stop-opacity:1" />
                   </linearGradient>
                   <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:rgba(255, 0, 0, 0.694);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(199, 0, 0, 0.605);stop-opacity:1" />
                   </linearGradient>
             </defs>
             
@@ -102,14 +124,17 @@ padding: 10px;
         </svg>
         <p> <b> Mouse over the bars</b> for history graphs of GPD of each country! Data is on the time interval from 1990 to 2021.</p>
     </div>
-    <div class="child1">
-        <h1> GDP vs Time </h1>
+    <div class="child2">
+        <h1 id="lineTitle">  GDP vs Time </h1>
         <svg id="timeline">
-
-            <g class="xAxis" />
-            <g class="yAxis" />
+            <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(255, 0, 0);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(178, 0, 0);stop-opacity:1" />
+              </linearGradient>
+            <g class="xAxis" > </g>
+            <g class="yAxis" > </g>
             <g class="body">
-                <path style="stroke: rgb(255, 0, 0); stroke-width: 2.5 "  />
+                <path stroke="url(#grad3)" stroke-width="3"  />
             </g>
         </svg>
         
@@ -133,7 +158,8 @@ padding: 10px;
     timeline.attr("height", height)
     timeline.attr("width", width)
 
-    let selectedCountry = undefined;
+    let selectedCountry = null;
+
 
     d3.csv("./gdp.csv")
         .then((data) => {
@@ -145,7 +171,10 @@ padding: 10px;
             })
             // console.log(data)
             data = prepareData(data)
+            // console.log(data[0])
+            drawLineChart(data[0])
             drawBarChart(data)
+            // drawLineChart("United States")
         })
 
 
@@ -204,6 +233,7 @@ padding: 10px;
     }
 
     function drawLineChart(data) {
+        d3.select("#lineTitle").text(data["Country Code"]+"'s GDP History" );
         data = data.history;
         /* console.log(data) */
         let margin = { left: 40, bottom: 20, right: 20, top: 20 }
@@ -235,10 +265,12 @@ padding: 10px;
             .attr("d", lineGenerator)
 
         timeline.select(".xAxis")
+            // .attr("class", "axisRed")
             .attr("transform", `translate(${margin.left},${height - margin.bottom})`)
             .call(d3.axisBottom(xScale).ticks(5))
 
         timeline.select(".yAxis")
+            // .attr("class", "axisRed")
             .attr("transform", `translate(${margin.left},${margin.top})`)
             .transition()
             .duration(200)
