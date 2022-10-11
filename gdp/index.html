@@ -68,14 +68,14 @@
             
         }
         
-        .axisRed line{
+        .xAxis line,.yAxis line{
         stroke: rgb(151, 0, 0);
         }
-        .axisRed path{
+        .xAxis path,.yAxis path{
         stroke: rgb(160, 0, 0);
         }
-        .axisRed text{
-        fill: rgba(255, 0, 0, 0.645);
+        .xAxis text,.yAxis text{
+        fill: rgba(255, 0, 0, 1);
         }  
   
 
@@ -126,8 +126,8 @@
                 <stop offset="0%" style="stop-color:rgb(255, 0, 0);stop-opacity:1" />
                 <stop offset="100%" style="stop-color:rgb(178, 0, 0);stop-opacity:1" />
               </linearGradient>
-            <g class="xAxis" style=" stroke:rgb(50, 0, 0);  stroke-width: 0.3;"> </g>
-            <g class="yAxis" style=" stroke:rgb(50, 1, 1); stroke-width: 0.3"> </g>
+            <g class="xAxis" > </g>
+            <g class="yAxis" > </g>
             <g class="body">
                 <path stroke="url(#grad3)" stroke-width="3"  />
             </g>
@@ -260,12 +260,12 @@
             .attr("d", lineGenerator)
 
         timeline.select(".xAxis")
-            .attr("class", "axisRed")
+            // .attr("class", "axisRed")
             .attr("transform", `translate(${margin.left},${height - margin.bottom})`)
             .call(d3.axisBottom(xScale).ticks(5))
 
         timeline.select(".yAxis")
-            .attr("class", "axisRed")
+            // .attr("class", "axisRed")
             .attr("transform", `translate(${margin.left},${margin.top})`)
             .transition()
             .duration(200)
