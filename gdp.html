@@ -1,0 +1,307 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Top 10 DGP from 1990 to 2021</title>
+    <style>
+        body {
+            margin: auto;
+            width: 900px;
+            height: 100%;
+            /* border: 5px solid #FFFF00;
+            border-radius: 20px 20px 20px 20px;
+            padding: 10px; */
+            background: rgba(35, 37, 63, 0.823);
+            /* background-image:linear-gradient(135deg, lightgray,lightgreen,#ffad9e);linear-gradient(180deg,#c3b9ae,#efeeee9d); */
+            }
+            h1 {
+            font-size:45px;
+            background: -webkit-linear-gradient(270deg,#5e0000, rgb(255, 0, 0));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            }
+
+
+        .chart-container 
+        { 
+            display: flex;  
+            /* font-family: Brush Script Std, Brush Script MT, cursive ; */
+            font-variant: small-caps;
+        /* flex: 50%; or - flex: 0 50% - or - flex-basis: 50% - */
+        flex-direction: row;
+        padding-left: 0px;
+        padding-right: 0px;
+        /* background:#9a9a9a; */
+        box-shadow: 0 15px 0 1px #d40000a2;
+        border-radius: 0px 0px 20px 20px; 
+        }
+        .child1 {
+                    width: 50%;
+                    min-height: 520px;
+                    height: 70vh;
+                    background-image:linear-gradient(180deg,#dbdbdb09,#cdcdcd,#fffefe,#dcdcf9);
+                    text-align: center;
+                    border-radius: 0px 0px 0 20px;
+                    /* color: white; */
+                    
+                }
+        
+        .child2 {
+            width: 50%;
+                    min-height: 520px;
+                    height: 70vh;
+                    background-image:linear-gradient(180deg,#dbdbdb09,#cdcdcd,#fffefe,#dcdcf9);
+                    text-align: center;
+                    border-radius: 0px 0px 20px 0;
+        }
+
+        /* 
+        .content {
+        max-width: 1200px;
+        margin: auto;
+        
+        padding: 10px;
+        border-radius: 20px 20px 20px 20px;
+        padding: 10px; 
+        } */
+
+
+        svg {
+            /* border: solid 1px rgba(70, 0, 0, 0.587); */
+            margin-top: 10px;
+            /* background: #d2d2d2; */
+            border-radius: 10px 10px 10px 10px;
+            
+        }
+        
+        .xAxis line,.yAxis line{
+        stroke: rgb(151, 60, 0);
+        }
+        .xAxis path,.yAxis path{
+        stroke: rgb(160, 0, 0);
+        }
+        .xAxis text,.yAxis text{
+        fill: rgb(194, 0, 0);
+        }  
+  
+
+        #tooltip {
+            font-family: cursive;
+            font-weight:600;
+            border: solid 1px rgb(158, 158, 158);
+            color:rgb(246, 245, 245);
+            padding: 3px;
+            position: absolute; /*allowing it to move*/
+            display: none;
+            background-color:rgba(255, 0, 0, 0.895) ;
+            border-radius: 3px 3px 3px 3px;
+        }
+        #timeline {
+            fill: none;
+            /* stroke: rgb(100, 100, 100) */
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="chart-container ">
+    <div class="child1">
+        <h1> Top GDP Averages</h1>
+        
+        <svg id="barchart">
+            <defs>
+                <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgba(255, 0, 0, 0.678);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(255, 217, 217, 0.781);stop-opacity:1" />
+                  </linearGradient>
+                  <linearGradient id="grad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:rgb(255,0,0);stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:rgba(199, 0, 0, 0.605);stop-opacity:1" />
+                  </linearGradient>
+            </defs>
+            
+            <g class="body" />
+        </svg>
+        <p> <b> Mouse over the bars</b> for history graphs of GPD of each country! Data is on the time interval from 1990 to 2021.</p>
+    </div>
+    <div class="child2">
+        <h1 id="lineTitle">  GDP vs Time </h1>
+        <svg id="timeline">
+            <linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" style="stop-color:rgb(255, 0, 0);stop-opacity:1" />
+                <stop offset="100%" style="stop-color:rgb(178, 0, 0);stop-opacity:1" />
+              </linearGradient>
+            <g class="xAxis" > </g>
+            <g class="yAxis" > </g>
+            <g class="body">
+                <path stroke="url(#grad3)" stroke-width="3"  />
+            </g>
+        </svg>
+        
+    </div>
+        
+    </div>
+    <div id="tooltip">Tooltip</div>
+</body>
+<script src="./assets/js/d3.js"></script>
+<script>
+    let barchart = d3.select("#barchart")
+
+    let width = 400;
+    let height = 300;
+
+    barchart.attr("height", height)
+    barchart.attr("width", width)
+
+    let timeline = d3.select("#timeline")
+    
+    timeline.attr("height", height)
+    timeline.attr("width", width)
+
+    let selectedCountry = null;
+
+
+    d3.csv("./assets/dat/gdp.csv")
+        .then((data) => {
+            data = data.map(d => {
+                let s = 0;
+                for(let i=1990;i<2022 ; i++){ s += +d[""+i]};
+                d["avg"] = s/(2022-1990);
+                return d
+            })
+            // console.log(data)
+            data = prepareData(data)
+            // console.log(data[0])
+            drawLineChart(data[0])
+            drawBarChart(data)
+            // drawLineChart("United States")
+        })
+
+
+    
+
+    function drawBarChart(data) {
+        let margin = { left: 20, bottom: 20, right: 20, top: 20 }
+
+        let bodyWidth = width - margin.left - margin.right;
+        let bodyHeight = height - margin.top - margin.bottom;
+
+        let xScale = d3.scaleBand()
+            .range([0, bodyWidth])
+            .domain(data.map(d => d.Country))
+            .padding(0.2)
+
+        let yScale = d3.scaleLinear()
+            .range([bodyHeight, 0])
+            .domain([0, d3.max(data, d => d.avg)])
+
+        barChartBody = barchart.select(".body")
+            .attr("transform", `translate(${margin.left},${margin.bottom})`)
+            .selectAll("rect")
+            .data(data)
+
+        barChartBody.enter()
+            .append("rect")
+            .attr("fill", "url(#grad1)")
+            .attr("width", xScale.bandwidth())
+            .attr("height", d => bodyHeight - yScale(d.avg))
+            .attr("y", d => yScale(d.avg))
+            .attr("x", d => xScale(d.Country))
+            // .on("mouseenter", d => {showTooltip(d.Country+": " +(Math.round(d.avg/10**11)/10).toLocaleString()+"T",[d3.event.clientX,yScale(d.avg)])})
+            // .on("mousemove", d => {showTooltip(d.Country+": "+ (Math.round(d.avg/10**11)/10).toLocaleString()+"T",[d3.event.clientX,yScale(d.avg)])})
+            .on("mouseleave", d => {d3.select("#tooltip").style("display","none")})
+            .on("mouseover", d=>{ // click to view data on the next graph
+                showTooltip(d.Country+": $" +(Math.round(d.avg/10**11)/10).toLocaleString()+"T",[d3.event.clientX,yScale(d.avg)]);
+                selectedCountry = d.Country;
+                drawBarChart(data);
+                // console.log(d)
+                drawLineChart(d)//find(v => v.Country === selectedCountry))
+            } )
+            
+            .merge(barChartBody)
+            .attr("fill", d => d.Country === selectedCountry ? "url(#grad2)" : "url(#grad1)")
+
+
+    }
+    function showTooltip(text, coords) {
+        d3.select("#tooltip").text(text)
+            .style("top",coords[1]+65)
+            .style("left",coords[0])
+            .style("display","block")
+            
+        
+    }
+
+    function drawLineChart(data) {
+        d3.select("#lineTitle").text(data["Country Code"]+"'s GDP History" );
+        data = data.history;
+        /* console.log(data) */
+        let margin = { left: 40, bottom: 20, right: 20, top: 20 }
+
+        let bodyWidth = width - margin.left - margin.right;
+        let bodyHeight = height - margin.top - margin.bottom;
+
+        let xScale = d3.scaleLinear()
+            .range([0, bodyWidth])
+            .domain(d3.extent(data, d => d.year))
+
+        let yScale = d3.scaleLinear()
+            .range([bodyHeight, 0])
+            .domain([0, d3.max(data, d => d.value)])
+
+        let lineGenerator = d3.line()
+            .x(d => xScale(d.year))
+            .y(d => yScale(d.value))
+            .defined(d => !!d.value)
+            
+
+        /* timeline = d3.select("#timeline") */
+
+        timeline.select(".body")
+            .attr("transform", `translate(${margin.left},${margin.top})`)
+            .select("path").datum(data)
+            .transition()
+            .duration(900)
+            .attr("d", lineGenerator)
+
+        timeline.select(".xAxis")
+            // .attr("class", "axisRed")
+            .attr("transform", `translate(${margin.left},${height - margin.bottom})`)
+            .call(d3.axisBottom(xScale).ticks(5))
+
+        timeline.select(".yAxis")
+            // .attr("class", "axisRed")
+            .attr("transform", `translate(${margin.left},${margin.top})`)
+            .transition()
+            .duration(200)
+            .call(d3.axisLeft(yScale).ticks(5).tickFormat(d => (d / 1e12) + "T"))
+
+    }
+
+    function prepareData(data) {
+        return data.map(d => {
+        
+            let years = Object.keys(d).filter(k => !isNaN(+k))
+
+            let history= years.map( y => ({
+                year:+y,
+                value: +d[y]
+            }))
+            d.history = history;
+            
+            // d["history"] = []
+            // for (let year of years) {
+            //     d["history"].push({
+            //         year: year,
+            //         value: +d[year]
+            //     })
+            // }
+            // d.avg = +d.avg
+            return d;
+        })
+    }
+</script>
+
+</html>
