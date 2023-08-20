@@ -25,12 +25,12 @@
         position: relative;
         background-color: rgb(216, 216, 216); 
 
-        background-color:#99c4ce
+        /* background-color:#99c4ce */
         ;  /*  #0013a08e,#0013a0ba, #0013a0de, #0013a0 */
     }
     h1 {
             font-size:40px;
-            background: -webkit-linear-gradient(270deg,#03005e, rgb(0, 145, 255)); //,#5e0000, rgb(255, 0, 0)
+            background: -webkit-linear-gradient(270deg,#060193, rgb(0, 145, 255)); //,#5e0000, rgb(255, 0, 0)
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -125,7 +125,7 @@
         .data(topo.features)
         .join("path")
             .attr("fill", d => colorScale[d.properties.Plnng_Area_Num])
-            .style("fill-opacity", .8)
+            .style("fill-opacity", .85)
             .attr("d", path)
             .attr("class", "FZ");
         /* .append("title")
