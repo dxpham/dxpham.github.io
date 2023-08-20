@@ -82,8 +82,8 @@
  
 
     Promise.all([
-        d3.json('./assets/data/CA-06-california-counties.geojson'),
-        d3.json('./assets/data/California_Electricity_Demand_Forecast_Zones_CAISO.geojson')
+        d3.json('./assets/dat/CA-06-california-counties.geojson'),
+        d3.json('./assets/dat/California_Electricity_Demand_Forecast_Zones_CAISO.geojson')
     ]).then(function([counties,data]){
         console.log(counties);
         draw_counties(counties);
