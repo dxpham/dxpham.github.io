@@ -55,9 +55,9 @@
 
  
     var
-        margin = { top: 50, right: 20, bottom: 20, left: 20 }
+        margin = { top: 20, right: 20, bottom: 10, left: 20 }
         , width = parseInt(d3.select("#chart").style("width")) 
-        , mapRatio =  0.52
+        , mapRatio =  0.55
         , height = (width - margin.left - margin.right) * mapRatio
         , colorScale = ['#b2d3e8', '#6fafd6', '#3484bf', '#0e549c','#b5e1ae', '#75c479', '#359d53', '#086f2f','#dbdbdb']
         , svg = d3.select('#chart').append("svg").attr("width", width)
