@@ -209,7 +209,7 @@ ${d.srcElement.__data__.properties.FZ_Def}`
         zoom = d3.zoom()
             .scaleExtent([1, 8])
             .on('zoom', function(event) {
-            svg.selectAll('path')
+            svg.selectAll('path.FZ')
                 .attr('transform', event.transform)
                 .attr("stroke-width", 2 / (event.transform.k/2+1));
             labels.selectAll('text')
