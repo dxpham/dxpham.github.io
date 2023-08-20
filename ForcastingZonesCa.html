@@ -1,0 +1,236 @@
+﻿<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+<head>
+    <title>CA Electric Demand Planning Areas and Forcasting Zones - Du Pham</title>
+
+
+<!-- Load d3.js -->
+<script src="https://d3js.org/d3.v7.min.js"></script>
+
+
+
+<style>
+    * {
+        font-family: 'Roboto', sans-serif;
+        text-transform: capitalize;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    body {
+        font-family: "Roboto" !important;
+        width: 100%;
+        height: 100px;
+        position: relative;
+        background-color: rgb(216, 216, 216); 
+
+        background-color:#99c4ce
+        ;  /*  #0013a08e,#0013a0ba, #0013a0de, #0013a0 */
+    }
+    h1 {
+            font-size:40px;
+            background: -webkit-linear-gradient(270deg,#5e0000, rgb(255, 0, 0));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            }
+
+
+</style>
+</head>
+<body>
+    <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- Create an element where the map will take place -->
+<div id="chart"></div>
+
+
+
+<script>
+
+    // The svg
+
+
+
+ 
+    var
+        margin = { top: 50, right: 20, bottom: 20, left: 20 }
+        , width = parseInt(d3.select("#chart").style("width")) 
+        , mapRatio =  0.52
+        , height = (width - margin.left - margin.right) * mapRatio
+        , colorScale = ['#b2d3e8', '#6fafd6', '#3484bf', '#0e549c','#b5e1ae', '#75c479', '#359d53', '#086f2f','#dbdbdb']
+        , svg = d3.select('#chart').append("svg").attr("width", width)
+            .attr("height", height)
+            .attr('viewBox', (-width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
+            .attr('preserveAspectRatio', 'xMinYMin')
+        , labels = svg.append("g").attr("id", "labels"); // setup a container <g> node to hold all the labels            
+
+    // Map and projection
+    
+    var projection = d3.geoMercator()
+        .center([-119, 37.4])
+        .scale(3600)//(1 << 18) / (28 * Math.PI))
+        .translate([margin.left,margin.top]);
+    var path = d3.geoPath().projection(projection);
+
+    let  round5= function(num) {
+            return Math.round(num / 5) * 5;
+    }
+
+  
+ 
+
+    Promise.all([
+        d3.json('./assets/data/CA-06-california-counties.geojson'),
+        d3.json('./assets/data/California_Electricity_Demand_Forecast_Zones_CAISO.geojson')
+    ]).then(function([counties,data]){
+        console.log(counties);
+        draw_counties(counties);
+        draw_FZ(data);
+        
+    })
+    
+    const duration = 100;
+
+    
+    function draw_counties(counties){
+    svg.append("g")
+    .selectAll("path")
+    .data(counties.features)
+    .enter().append("path")
+        .attr("d", path)
+        .attr("fill", "none")
+        .attr("stroke", "white")
+        // .attr("stroke-width", .5 )
+        .attr("class", "county");
+
+
+
+    labels.selectAll("text")
+        .data(counties.features)                       
+        .join('text')                                     
+        .attr('text-anchor', 'middle')                  
+        .text(d => d.properties.NAME)
+        .style("font-size", 'xx-small')
+        .attr('x', d => path.centroid(d)[0])
+        .attr('y', d => path.centroid(d)[1]);
+        
+    }
+    function draw_FZ( topo) {
+
+ 
+    svg.append("g")
+        .selectAll("path")
+        .data(topo.features)
+        .join("path")
+            .attr("fill", d => colorScale[d.properties.Plnng_Area_Num])
+            .style("fill-opacity", .8)
+            .attr("d", path)
+            .attr("class", "FZ");
+        /* .append("title")
+        .text(d => d.properties.SHAPE_Area); */
+    
+    svg.append("path")
+        .datum(topo.features)
+        .attr("fill", "none")
+        .attr("stroke", "white")
+        .attr("stroke-linejoin", "round")
+        .attr("d", path);
+
+    const tooltip = svg.append("g").attr("class", "tooltip");
+    
+    svg
+        .selectAll(".FZ")
+        .on("mouseover", function(d) {
+        //   console.log(d);
+        //   console.log(d.fromElement);
+        tooltip.call(
+            callout, 
+            `PA:${d.srcElement.__data__.properties.Plnng_Area} - FZ:${d.srcElement.__data__.properties.FZ_Name}
+${d.srcElement.__data__.properties.FZ_Def}`
+        );
+        d3.select(this)
+            .attr("stroke", "white")
+            .raise();
+        })
+        .on("mousemove", function(d) {
+        tooltip.attr(
+            "transform",
+            `translate(${d3.pointer(d)[0]},${d3.pointer(d)[1]})`
+        );
+        })
+        .on("mouseout", function() {
+        tooltip.call(callout, null);
+        d3.select(this)
+            .attr("stroke", null)
+            .lower();
+        }).on("click", reset);
+    
+        callout = (g, value) => {
+            if (value === null) {return g.attr("display", "none");} //visibility: hidden;  g.style("display", "none");}
+            // console.log(value)
+            else{
+            g
+                .attr("display", null)
+                .attr("pointer-events", "none")
+                // .style("font", "10px sans-serif");
+
+            const path = g.selectAll("path")
+                .data([null])
+                .join('path')
+                .attr("fill", "white")
+                .attr("stroke", "lightgrey")
+                .attr("stroke-width", "0.5px")
+                .attr("opacity", ".2");
+
+            const text = g.selectAll("text")
+                .data([null])
+                .join("text")
+                .call(text => text
+                    .selectAll("tspan")
+                    .data((value + "").split(/\n/))
+                    .join("tspan")
+                        .attr("x", 0)
+                        .attr("y", (d, i) => `${i * 1.1}em`)
+                        .style("font-weight", (_, i) => i ? null : "bold")
+                        .style("font-size", (_, i) => i ? "x-small" : null)
+                        .attr("text-anchor", "right")
+                        .text(d => d.length > 200 ? d.substring(0, 200) + " ..." : d)
+                    );
+            // console.log(text.node());
+            const {x, y, width: w, height: h} = text.node().getBBox();
+           
+            text.attr("transform", `translate(${-w / 2},${15 - y})`);
+            path.attr("d", `M${-w / 2 - 10},5H-5l5,-5l5,5H${w / 2 + 10}v${h + 20}h-${w + 20}z`);
+            }
+        }
+        
+        zoom = d3.zoom()
+            .scaleExtent([1, 8])
+            .on('zoom', function(event) {
+            svg.selectAll('path')
+                .attr('transform', event.transform)
+                .attr("stroke-width", 2 / (event.transform.k/2+1));
+            labels.selectAll('text')
+                .attr('transform', event.transform);
+                // .attr("stroke-width", 2 / (event.transform.k/2+1));
+        });  
+
+        svg.call(zoom);
+
+        function reset() {
+            svg.transition().duration(750).call(
+                zoom.transform,
+                d3.zoomIdentity,
+                d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
+            );
+        }
+
+
+    }
+
+    </script>
+
+
+</body>
