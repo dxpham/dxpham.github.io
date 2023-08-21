@@ -25,7 +25,7 @@
         position: relative;
         background-color: rgb(216, 216, 216); 
 
-        /* background-color:#99c4ce */
+        /* background-color: #6161ff*/    
         ;  /*  #0013a08e,#0013a0ba, #0013a0de, #0013a0 */
     }
     h1 {
@@ -36,7 +36,9 @@
             -webkit-text-fill-color: transparent;
             }
 
-
+    #labels{
+        text-shadow: 2px 2px 8px #01056f;
+    }
 </style>
 </head>
 <body>
@@ -59,12 +61,12 @@
         , width = window.innerWidth
         // , mapRatio =  0.55
         , height = window.innerHeight
-        , colorScale = ['#b2d3e8', '#6fafd6', '#3484bf', '#0e549c','#b5e1ae', '#75c479', '#359d53', '#086f2f','#dbdbdb']
+        , colorScale = ['#61d7ff','#61b0ff','#6188ff','#6161ff','#b5e1ae', '#75c479', '#359d53', '#086f2f','#dbdbdb'] //'#b2d3e8', '#6fafd6', '#3484bf', '#0e549c'
         , svg = d3.select('#chart').append("svg").attr("width", width)
             .attr("height",   height)
             .attr('viewBox', (- width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
             .attr('preserveAspectRatio', 'xMinYMin')
-        , labels = svg.append("g").attr("id", "labels"); // setup a container <g> node to hold all the labels            
+        ; // setup a container <g> node to hold all the labels            
 
     // Map and projection
     
@@ -74,9 +76,6 @@
         .translate([margin.left,margin.top]);
     var path = d3.geoPath().projection(projection);
 
-    let  round5= function(num) {
-            return Math.round(num / 5) * 5;
-    }
 
   
  
@@ -85,9 +84,10 @@
         d3.json('./assets/dat/CA-06-california-counties.geojson'),
         d3.json('./assets/dat/California_Electricity_Demand_Forecast_Zones_CAISO.geojson')
     ]).then(function([counties,data]){
-        console.log(counties);
-        draw_counties(counties);
+        // console.log(counties);
         draw_FZ(data);
+        draw_counties(counties);
+        
         
     })
     
@@ -95,6 +95,8 @@
 
     
     function draw_counties(counties){
+    
+
     svg.append("g")
     .selectAll("path")
     .data(counties.features)
@@ -102,12 +104,11 @@
         .attr("d", path)
         .attr("fill", "none")
         .attr("stroke", "white")
-        // .attr("stroke-width", .5 )
+        .attr("stroke-width", .1 )
+        .attr("opacity", .5)
         .attr("class", "county");
-
-
-
-    labels.selectAll("text")
+    svg.append("g").attr("id", "labels")
+        .selectAll("text")
         .data(counties.features)                       
         .join('text')                                     
         .attr('text-anchor', 'middle')                  
@@ -116,7 +117,9 @@
         .attr('x', d => path.centroid(d)[0])
         .attr('y', d => path.centroid(d)[1]);
         
-    }
+    }    
+
+    
     function draw_FZ( topo) {
 
  
@@ -125,12 +128,12 @@
         .data(topo.features)
         .join("path")
             .attr("fill", d => colorScale[d.properties.Plnng_Area_Num])
-            .style("fill-opacity", .85)
+            // .style("fill-opacity", .85)
             .attr("d", path)
             .attr("class", "FZ");
         /* .append("title")
         .text(d => d.properties.SHAPE_Area); */
-    
+    labels = svg.append("g").attr("id", "labels")
     svg.append("path")
         .datum(topo.features)
         .attr("fill", "none")
@@ -180,9 +183,9 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 .data([null])
                 .join('path')
                 .attr("fill", "white")
-                .attr("stroke", "lightgrey")
+                .attr("stroke", "white")
                 .attr("stroke-width", "0.5px")
-                .attr("opacity", ".2");
+                .attr("opacity", ".8");
 
             const text = g.selectAll("text")
                 .data([null])
@@ -214,8 +217,8 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 .attr("stroke-width", 2 / (event.transform.k/2+1));
             svg.selectAll('path.county')
                 .attr('transform', event.transform)
-                .attr("stroke-width", 1.5 / (event.transform.k/2+1));
-            labels.selectAll('text')
+                .attr("stroke-width", .1 / (event.transform.k/2+1));
+            svg.selectAll('text')
                 .attr('transform', event.transform);
                 // .attr("stroke-width", 2 / (event.transform.k/2+1));
         });  
