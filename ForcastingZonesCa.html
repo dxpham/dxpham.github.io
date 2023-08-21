@@ -56,7 +56,7 @@
 
  
     var
-        margin = { top: 5, right: 20, bottom: 10, left: 20 }
+        margin = { top: 5, right: 20, bottom: 10, left: 10 }
         , width = window.innerWidth
         , height = window.innerHeight
         , colorScale = ['#025e85',  '#2397b1','#56c4dc',  '#a0f5ff','#850202', '#b12323','#dc5656','#ffa0a0','#dbdbdb'] 
@@ -68,7 +68,7 @@
     
     var projection = d3.geoMercator()
         .center([-119, 37.4])
-        .scale((1 << 18) / (28 * Math.PI-10))
+        .scale((1 << 18) / 60)
         .translate([margin.left,margin.top]);
     var path = d3.geoPath().projection(projection);
 
