@@ -35,8 +35,8 @@
             text-shadow: 2px 2px 25px #01056f;
             }
 
-    #labels{ text-shadow: 2px 2px 8px #01056f; }
-    .tooltip{text-shadow: 2px 2px 25px #012184;}
+    #labels{ text-shadow: 2px 2px 8px #013d6f;}
+    .tooltip{text-shadow: 2px 2px 25px #015284;}
 </style>
 </head>
 <body>
@@ -58,7 +58,7 @@
         margin = { top: 5, right: 20, bottom: 10, left: 20 }
         , width = window.innerWidth
         , height = window.innerHeight
-        , colorScale = ['#61d7ff','#61b0ff','#6188ff','#6161ff','#ff9661','#ff61b0','#ff617b','#ff6e61','#dbdbdb'] //'#b2d3e8', '#6fafd6', '#3484bf', '#0e549c','#b5e1ae', '#75c479', '#359d53', '#086f2f',
+        , colorScale = ['#025e85',  '#2397b1','#56c4dc',  '#a0f5ff','#850202', '#b12323','#dc5656','#ffa0a0','#dbdbdb'] 
         , svg = d3.select('#chart').append("svg").attr("width", width)
             .attr("height",   height)
             .attr('viewBox', (- width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
@@ -95,9 +95,9 @@
         .enter().append("path")
             .attr("d", path)
             .attr("fill", "none")
-            .attr("stroke", "white")
+            .attr("stroke", "black")
             .attr("stroke-width", .1 )
-            .attr("opacity", .5)
+            // .attr("opacity", .5)
             .attr("class", "county");
     svg.append("g")
         .attr("id", "labels")
