@@ -23,10 +23,10 @@
         width: 100%;
         height: 100px;
         position: relative;
-        background-color: rgb(216, 216, 216); 
+        background-color: rgb(255, 255, 255); 
 
-        /* background-color: #6161ff*/    
-        ;  /*  #0013a08e,#0013a0ba, #0013a0de, #0013a0 */
+        /*background-color: #ff9661*/    
+        ;  /* , */
     }
     h1 {
             font-size:40px;
@@ -34,11 +34,13 @@
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 2px 2px 25px #01056f;
             }
 
     #labels{
         text-shadow: 2px 2px 8px #01056f;
     }
+    .tooltip{text-shadow: 2px 2px 25px #012184;}
 </style>
 </head>
 <body>
@@ -61,7 +63,7 @@
         , width = window.innerWidth
         // , mapRatio =  0.55
         , height = window.innerHeight
-        , colorScale = ['#61d7ff','#61b0ff','#6188ff','#6161ff','#b5e1ae', '#75c479', '#359d53', '#086f2f','#dbdbdb'] //'#b2d3e8', '#6fafd6', '#3484bf', '#0e549c'
+        , colorScale = ['#61d7ff','#61b0ff','#6188ff','#6161ff','#ff9661','#ff61b0','#ff617b','#ff6e61','#dbdbdb'] //'#b2d3e8', '#6fafd6', '#3484bf', '#0e549c','#b5e1ae', '#75c479', '#359d53', '#086f2f',
         , svg = d3.select('#chart').append("svg").attr("width", width)
             .attr("height",   height)
             .attr('viewBox', (- width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
@@ -95,19 +97,18 @@
 
     
     function draw_counties(counties){
-    
-
+     svg.append("g")
+        .selectAll("path")
+        .data(counties.features)
+        .enter().append("path")
+            .attr("d", path)
+            .attr("fill", "none")
+            .attr("stroke", "white")
+            .attr("stroke-width", .1 )
+            .attr("opacity", .5)
+            .attr("class", "county");
     svg.append("g")
-    .selectAll("path")
-    .data(counties.features)
-    .enter().append("path")
-        .attr("d", path)
-        .attr("fill", "none")
-        .attr("stroke", "white")
-        .attr("stroke-width", .1 )
-        .attr("opacity", .5)
-        .attr("class", "county");
-    svg.append("g").attr("id", "labels")
+        .attr("id", "labels")
         .selectAll("text")
         .data(counties.features)                       
         .join('text')                                     
@@ -121,7 +122,6 @@
 
     
     function draw_FZ( topo) {
-
  
     svg.append("g")
         .selectAll("path")
@@ -133,7 +133,7 @@
             .attr("class", "FZ");
         /* .append("title")
         .text(d => d.properties.SHAPE_Area); */
-    labels = svg.append("g").attr("id", "labels")
+    
     svg.append("path")
         .datum(topo.features)
         .attr("fill", "none")
@@ -154,7 +154,7 @@
 ${d.srcElement.__data__.properties.FZ_Def}`
         );
         d3.select(this)
-            .attr("stroke", "white")
+            .attr("stroke", "black")
             .raise();
         })
         .on("mousemove", function(d) {
@@ -183,9 +183,10 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 .data([null])
                 .join('path')
                 .attr("fill", "white")
-                .attr("stroke", "white")
-                .attr("stroke-width", "0.5px")
-                .attr("opacity", ".8");
+                .style("fill-opacity", .3);
+                // .attr("stroke", "white")
+                // .attr("stroke-width", "0.5px")
+                // .attr("opacity", ".4");
 
             const text = g.selectAll("text")
                 .data([null])
@@ -199,7 +200,7 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                         .style("font-weight", (_, i) => i ? null : "bold")
                         .style("font-size", (_, i) => i ? "x-small" : null)
                         .attr("text-anchor", "right")
-                        .text(d => d.length > 200 ? d.substring(0, 200) + " ..." : d)
+                        .text(d => d.length > 150 ? d.substring(0, 150) + " ..." : d)
                     );
             // console.log(text.node());
             const {x, y, width: w, height: h} = text.node().getBBox();
