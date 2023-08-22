@@ -47,15 +47,9 @@
             width: 16px;
             height: 16px;
         }
-
-     label.caiso{
-        font-size:20px;
-        color:#0493b3;
-    }
-    label.noncaiso{
-        font-size:20px;
-        color:  #ac0707;
-    }
+    label{font-size:20px;}
+    label.caiso{ color:#0493b3; }
+    label.noncaiso{ color:  #ac0707;  }
      label.caiso:hover{
         /* background:#dbdbdb; */
         color:#3e9cb17a;
@@ -66,7 +60,7 @@
     }
     label.noneall:hover{
         box-sizing: 0px;
-        color:  #9c9c9c6d;
+        color:  #9c9c9c;
     }
     /* input#none[type="checkbox"]:checked{
          box-shadow: 0 0 0 7px hotpink;
@@ -80,8 +74,8 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div>
-    <label class="noneall" >  <input type="checkbox" id="none" value="none"  style="accent-color: #bababa;"/>  None &nbsp;</i> </label>
-    <label class="noneall" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All&nbsp;&nbsp;&nbsp;&nbsp;</i> </label>
+    <label class="noneall" >  <input type="checkbox" id="none" value="none"  style="accent-color: #bababa;"/>  None </i> </label>
+    <label class="noneall" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All&nbsp;&nbsp;&nbsp;</i> </label>
     <label  class="caiso"> <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>  <i class="fa fa-lightbulb-o"></i> PGE  &nbsp; </label>   
     <label class="caiso" > <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   <i class="fa fa-lightbulb-o"></i> SCE  &nbsp;  </label>
     <label class="caiso" > <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  <i class="fa fa-lightbulb-o" ></i> SDGE  &nbsp; </label>
