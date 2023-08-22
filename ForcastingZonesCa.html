@@ -1,48 +1,67 @@
-﻿<!-- Code from d3-graph-gallery.com -->
 <!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en" >
 <head>
-    <title>CA Electric Demand Planning Areas and Forecasting Zones - Du Pham</title>
+  <meta charset="UTF-8">
+  <title>CodePen - Cute skeuomorphic checkboxes </title>
+  <!-- <link rel="stylesheet" href="./assests/css/style.css"> -->
+  <meta charset="utf-8">
 
-
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v7.min.js"></script>
-
-
-
-<style>
-    * {
-        font-family: 'Roboto', sans-serif;
-        text-transform: capitalize;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    body {
-        font-family: "Roboto" !important;
-        width: 100%;
-        height: 100px;
-        position: relative;
-        background-color: rgb(255, 255, 255); 
-    }
-
-    h1 {
-            font-size:40px;
-            background: -webkit-linear-gradient(270deg,#002d51, rgb(119, 194, 251)); //,#5e0000, rgb(255, 0, 0)
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 2px 2px 45px #015284;
-            }
-
-    #labels{ text-shadow: 2px 2px 8px #013d6f;
-            pointer-events: none;}
-    .tooltip{text-shadow: 2px 2px 25px #015284;}
-</style>
+      <title>CA Electric Demand Planning Areas and Forecasting Zones - Du Pham</title>
+  
+  
+  <!-- Load d3.js -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  
+  
+  
+   <style>
+      * {
+          font-family: 'Roboto', sans-serif;
+          text-transform: capitalize;
+          margin: 0 auto;
+          text-align: center;
+      } 
+  
+      body {
+          font-family: "Roboto" !important;
+          width: 100%;
+          height: 100px;
+          position: relative;
+          background-color: rgb(255, 255, 255); 
+      }
+  
+      h1 {
+              font-size:40px;
+              background: -webkit-linear-gradient(270deg,#002d51, rgb(119, 194, 251)); //,#5e0000, rgb(255, 0, 0)
+              background-clip: text;
+              -webkit-background-clip: text;
+              -webkit-text-fill-color: transparent;
+              text-shadow: 2px 2px 45px #015284;
+              }
+  
+      #labels{ text-shadow: 2px 2px 8px #013d6f;
+              pointer-events: none;}
+      
+      .tooltip{text-shadow: 2px 2px 25px #015284;}
+  </style>
 </head>
 <body>
-    <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- partial:index.partial.html -->
+
+<!-- partial -->
+<h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
+<div class="container">
+    <input type="checkbox" id="checkbox" value="PGE" checked/> <label> 🥕 PGE  </label>
+      <input type="checkbox" id="checkbox" value="SCE" checked/>  <label> 🍎 SCE </label>
+  
+    <input type="checkbox" id="checkbox" value="SDGE" checked/> <label>🍐 SDGE </label>
+  <input type="checkbox" id="checkbox" value="VEA" checked> <label> VEA</label>
+  <input type="checkbox" id="checkbox" value="IID" checked> <label> IID</label>
+  <input type="checkbox" id="checkbox" value="NCNC" checked> <label> NCNC</label>
+  <input type="checkbox" id="checkbox" value="LADWP" checked> <label> LADWP</label>
+  <input type="checkbox" id="checkbox" value="BUGL" checked> <label> BUGL</label>
+</div>
+
 <!-- Create an element where the map will take place -->
 <div id="chart"></div>
 
@@ -114,7 +133,7 @@
     }    
 
     
-    function draw_FZ( topo) {
+    function draw_FZ( topo) { console.log(topo);
  
     svg.append("g")
         .selectAll("path")
@@ -122,7 +141,8 @@
         .join("path")
             .attr("fill", d => colorScale[d.properties.Plnng_Area_Num])
             .attr("d", path)
-            .attr("class", "FZ");
+            .attr("class", "FZ")
+            .attr("id", d => d.properties.Plnng_Area);
 
     
     svg.append("path")
@@ -131,6 +151,7 @@
         .attr("stroke", "white")
         .attr("stroke-linejoin", "round")
         .attr("d", path);
+        // .attr("id", d => d.properties.Plnng_Area);
 
     const tooltip = svg.append("g").attr("class", "tooltip");
     
@@ -168,14 +189,14 @@ ${d.srcElement.__data__.properties.FZ_Def}`
 
             const path = g.selectAll("path")
                 .data([null])
-                .join('path')
+                .join('path').attr("id", "tooltips")
                 .attr("fill", "white")
                 .style("fill-opacity", .3);
 
 
             const text = g.selectAll("text")
                 .data([null])
-                .join("text")
+                .join("text").attr("id", "tooltips")
                 .call(text => text
                     .selectAll("tspan")
                     .data((value + "").split(/\n/))
@@ -196,7 +217,7 @@ ${d.srcElement.__data__.properties.FZ_Def}`
         
         zoom = d3.zoom()
             .scaleExtent([1, 8])
-            .on('zoom', function(event) {
+            .on('zoom', function(event) { console.log(event.transform);
             svg.selectAll('path.FZ')
                 .attr("stroke-width", 2 / (event.transform.k/2+1))
                 .attr('transform', event.transform);
@@ -207,6 +228,11 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 
             svg.selectAll('#labels')
                 .attr('transform', event.transform);
+        //     svg.selectAll('#tooltips')
+        //     .attr(
+        //     "transform",
+        //     `translate(${d=>d3.pointer(d)[0]+event.transform.x},${d=>d3.pointer(d)[1]+event.transform.y})`
+        // );;
          });  
 
         svg.call(zoom);
@@ -218,11 +244,34 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 d3.zoomTransform(svg.node()).invert([width / 2, height / 2])
             );
         }
-
+    
+    function update(){
+        
+        // For each check box:
+        d3.selectAll("#checkbox").each(function(d){ console.log(d);
+          cb = d3.select(this);
+          pa = cb.property("value")
+  
+          // If the box is check, I show the group
+          if(cb.property("checked")){
+            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 1)//.attr("r", function(d){ return size(d.size) })
+  
+          // Otherwise I hide it
+          }else{
+            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 0)//.attr("r", 0)
+          }
+        })
+      }
+  
+      // When a button change, I run the update function
+    d3.selectAll("#checkbox").on("change",update);
+  
+      // And I initialize it at the beginning
+    update()
 
     }
 
     </script>
 
-
 </body>
+</html>
