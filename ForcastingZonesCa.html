@@ -44,25 +44,32 @@
       
       .tooltip{text-shadow: 2px 2px 25px #015284;}
       input {
-            width: 20px;
-            height: 20px;
+            width: 16px;
+            height: 16px;
         }
 
      label.caiso{
-        font-size:25px;
+        font-size:20px;
         color:#0493b3;
     }
     label.noncaiso{
-        font-size:25px;
+        font-size:20px;
         color:  #ac0707;
     }
      label.caiso:hover{
         /* background:#dbdbdb; */
         color:#3e9cb17a;
     }
-    label.noncaiso:hover{
+    label.caiso:hover{
         /* background:#dbdbdb; */
-        color:  #b149496d;
+        color:#3e9cb17a;
+    }
+    label.none:hover{
+        /* background:#dbdbdb; */
+        color:  #9c9c9c6d;
+    }
+    input#none[type="checkbox"]:checked{
+         box-shadow: 0 0 0 7px hotpink;
     }
   </style>
 </head>
@@ -72,14 +79,15 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div>
-    <label  class="caiso">&nbsp;<i class="fa fa-lightbulb-o"></i> PGE <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>   </label>   
-    <label class="caiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> SCE <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   </label>
-    <label class="caiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> SDGE <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  </label>
-    <label class="caiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> VEA <input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/> </label>
-    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> IID <input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> </label>
-    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> NCNC <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/> </label>
-    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> LADWP <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> </label>
-    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" > </i> BUGL <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> </i> </label>
+    <label  class="caiso"> <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>  <i class="fa fa-lightbulb-o"></i> PGE  &nbsp; </label>   
+    <label class="caiso" > <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   <i class="fa fa-lightbulb-o"></i> SCE  &nbsp;  </label>
+    <label class="caiso" > <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  <i class="fa fa-lightbulb-o" ></i> SDGE  &nbsp; </label>
+    <label class="caiso" ><input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/>  <i class="fa fa-lightbulb-o" ></i> VEA  &nbsp; </label>
+    <label class="noncaiso" > <input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> <i class="fa fa-lightbulb-o" ></i> IID &nbsp; </label>
+    <label class="noncaiso" > <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/>  <i class="fa fa-lightbulb-o" ></i> NCNC  &nbsp; </label>
+    <label class="noncaiso" >  <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> <i class="fa fa-lightbulb-o" ></i> LADWP &nbsp;</label>
+    <label class="noncaiso" >  <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> <i class="fa fa-lightbulb-o" > </i> BUGL &nbsp;  </i> </label>
+    <label class="none" >&nbsp;&nbsp; <input type="checkbox" id="none" value="none" checked style="accent-color: #bababa;"/> &nbsp; None </i> </label>
 </div>
 
 <!-- Create an element where the map will take place -->
@@ -91,8 +99,9 @@
         margin = { top: 5, right: 20, bottom: 10, left: 10 }
         , width = window.innerWidth
         , height = window.innerHeight - margin.top - margin.bottom 
+        , PAs = [   "VEA","SDGE","SCE","PGE", 'BUGL','LADWP','NCNC',"IID",'Other']
         , colorScale = d3.scaleOrdinal(['#025e85',  '#2397b1','#56c4dc',  '#a0f5ff','#850202', '#b12323','#dc5656','#ffa0a0','#dbdbdb'])
-                        .domain([   "VEA","SDGE","SCE","PGE", 'BUGL','LADWP','NCNC',"IID",'Other'])
+                        .domain(PAs)
         , svg = d3.select('#chart').append("svg").attr("width", width)
             .attr("height",   height)
             .attr('viewBox', (- width / 2) + ' ' + (-height / 2) + ' ' + width + ' ' + height)
@@ -251,24 +260,50 @@ ${d.srcElement.__data__.properties.FZ_Def}`
         }
     
     function update(){
+        // For uncheckall
         
         // For each check box:
-        d3.selectAll("#checkbox").each(function(d){ 
-          cb = d3.select(this);
-          pa = cb.property("value")
-  
-          // If the box is check, I show the group
-          if(cb.property("checked")){
-            svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);
-          // Otherwise I hide it
-          }else{
-            svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);
-          }
+        d3.selectAll("input").each(function(d){ 
+            cb = d3.select(this);
+            val = cb.property("value");
+                
+            if (val == 'none'){ 
+                // If the uncheck box is check, I show the groups except Other
+                if(cb.property("checked")){ 
+                    // d3.selectAll("#all").attr('checked', 'false');
+                    d3.selectAll("#checkbox").attr('checked', 'false');
+                    PAs.slice(1, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);})
+                    }
+            }
+            // else if (val == 'all'){ 
+            //     // If the check all box is check, I hide the groups except Other
+            //     if(cb.property("checked")){ 
+            //         d3.selectAll("#none").attr('checked', 'false');
+            //         d3.selectAll("#checkbox").attr('checked', 'true');
+            //         PAs.slice(1, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);})
+            //         };
+                
+            // }
+            else{  // These are not checkall nor uncheckall    
+                
+                
+                // If the box is check, I show the group
+                if(cb.property("checked")){
+                    d3.selectAll("#none").attr('checked', 'false');
+                    svg.selectAll("#"+val).transition().duration(duration).style("opacity", 1);
+                // Otherwise I hide it
+                }else{ 
+                    // d3.selectAll("#all").attr('checked', 'false');    
+                    svg.selectAll("#"+val).transition().duration(duration).style("opacity", 0);
+                }
+            }
         })
-      }
-  
+    }
+
+
+      
       // When a button change, I run the update function
-    d3.selectAll("#checkbox").on("change",update);
+    d3.selectAll("input").on("change",update);
   
       // And I initialize it at the beginning
     update()
