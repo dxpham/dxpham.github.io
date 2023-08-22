@@ -81,7 +81,7 @@
     var
         margin = { top: 5, right: 20, bottom: 10, left: 10 }
         , width = window.innerWidth
-        , height = window.innerHeight
+        , height = window.innerHeight - margin.top - margin.bottom 
         , colorScale = ['#025e85',  '#2397b1','#56c4dc',  '#a0f5ff','#850202', '#b12323','#dc5656','#ffa0a0','#dbdbdb'] 
         , svg = d3.select('#chart').append("svg").attr("width", width)
             .attr("height",   height)
@@ -221,7 +221,7 @@ ${d.srcElement.__data__.properties.FZ_Def}`
         
         zoom = d3.zoom()
             .scaleExtent([1, 8])
-            .on('zoom', function(event) { console.log(event.transform);
+            .on('zoom', function(event) { 
             svg.selectAll('path.FZ')
                 .attr("stroke-width", 2 / (event.transform.k/2+1))
                 .attr('transform', event.transform);
