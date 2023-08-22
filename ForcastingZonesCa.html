@@ -47,9 +47,22 @@
             width: 20px;
             height: 20px;
         }
-     label{font-size:25px;}
-     label:hover, label:active {
-        background:#dbdbdb;
+
+     label.caiso{
+        font-size:25px;
+        color:#0493b3;
+    }
+    label.noncaiso{
+        font-size:25px;
+        color:  #ac0707;
+    }
+     label.caiso:hover{
+        /* background:#dbdbdb; */
+        color:#3e9cb17a;
+    }
+    label.noncaiso:hover{
+        /* background:#dbdbdb; */
+        color:  #b149496d;
     }
   </style>
 </head>
@@ -59,14 +72,14 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div>
-    <label style="color: #91dfe8;" >&nbsp;<i class="fa fa-lightbulb-o"></i> PGE <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>   </label>   
-    <label style="color: #56c4dc;" > &nbsp;<i class="fa fa-lightbulb-o" ></i> SCE <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   </label>
-    <label style="color: #2397b1;" > &nbsp;<i class="fa fa-lightbulb-o" ></i> SDGE <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  </label>
-    <label style="color: #025e85;" > &nbsp;<i class="fa fa-lightbulb-o" ></i> VEA <input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/> </label>
-    <label style="color: #ffa0a0;" > &nbsp;<i class="fa fa-lightbulb-o" ></i> IID <input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> </label>
-    <label style="color: #dc5656;" > &nbsp;<i class="fa fa-lightbulb-o" ></i> NCNC <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/> </label>
-    <label style="color: #b12323;" > &nbsp;<i class="fa fa-lightbulb-o" ></i> LADWP <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> </label>
-    <label style="color: #850202;" > &nbsp;<i class="fa fa-lightbulb-o" > </i> BUGL <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> </i> </label>
+    <label  class="caiso">&nbsp;<i class="fa fa-lightbulb-o"></i> PGE <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>   </label>   
+    <label class="caiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> SCE <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   </label>
+    <label class="caiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> SDGE <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  </label>
+    <label class="caiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> VEA <input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/> </label>
+    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> IID <input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> </label>
+    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> NCNC <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/> </label>
+    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" ></i> LADWP <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> </label>
+    <label class="noncaiso" > &nbsp;<i class="fa fa-lightbulb-o" > </i> BUGL <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> </i> </label>
 </div>
 
 <!-- Create an element where the map will take place -->
