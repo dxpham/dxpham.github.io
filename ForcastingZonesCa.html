@@ -133,7 +133,7 @@
     }    
 
     
-    function draw_FZ( topo) { console.log(topo);
+    function draw_FZ( topo) {
  
     svg.append("g")
         .selectAll("path")
@@ -151,7 +151,7 @@
         .attr("stroke", "white")
         .attr("stroke-linejoin", "round")
         .attr("d", path);
-        // .attr("id", d => d.properties.Plnng_Area);
+ 
 
     const tooltip = svg.append("g").attr("class", "tooltip");
     
@@ -228,11 +228,7 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 
             svg.selectAll('#labels')
                 .attr('transform', event.transform);
-        //     svg.selectAll('#tooltips')
-        //     .attr(
-        //     "transform",
-        //     `translate(${d=>d3.pointer(d)[0]+event.transform.x},${d=>d3.pointer(d)[1]+event.transform.y})`
-        // );;
+   
          });  
 
         svg.call(zoom);
@@ -254,11 +250,11 @@ ${d.srcElement.__data__.properties.FZ_Def}`
   
           // If the box is check, I show the group
           if(cb.property("checked")){
-            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 1)//.attr("r", function(d){ return size(d.size) })
+            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 1);
   
           // Otherwise I hide it
           }else{
-            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 0)//.attr("r", 0)
+            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 0);
           }
         })
       }
