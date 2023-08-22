@@ -43,28 +43,18 @@
               pointer-events: none;}
       
       .tooltip{text-shadow: 2px 2px 25px #015284;}
-      input {
-            width: 16px;
-            height: 16px;
-        }
+      input{ width: 16px;
+            height: 16px;}
+      input#all,#none,#allnoncaiso,#allcaiso {display:none;}
     /* label{font-size:15px;} */
-    label.caiso{ color:#0493b3; }
+    label.caiso{ color:#0493b3;  }
     label.noncaiso{ color:  #ac0707;  }
-     label.caiso:hover{
-        /* background:#080808a2; */
-        color:#3e9cb17a;
-    }
-    label.noncaiso:hover{
-        /* background:#dbdbdb; */
-        color:#b1463e7a;
-    }
-    label.noneall:hover{
-        box-sizing: 0px;
-        color:  #9c9c9c;
-    }
-    /* input#none[type="checkbox"]:checked{
-         box-shadow: 0 0 0 7px hotpink;
-    } */
+     label.caiso:hover{color:#3e9cb17a; }
+    label.noncaiso:hover{color:#b1463e7a;}
+    label.none_all{background-color: rgb(221, 221, 221) ; border: .5px solid #56c4dc; border-radius: 5px; padding: 2px;}
+    label.none_all:hover{color:  #696969; background-color: rgb(243, 242, 242) ; border: .5px solid rgb(255, 207, 207);border-radius: 5px; padding: 2px;}
+
+    /* input#none[type="checkbox"]:checked{ box-shadow: 0 0 0 1px hotpink; } */
 
   </style>
 </head>
@@ -74,10 +64,10 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div>
-    <label class="noneall" >  <input type="checkbox" id="none" value="none"  style="accent-color: #bababa;"/>  None </i> </label>
-    <label class="noneall" >  <input type="checkbox" id="allcaiso" value="caiso"  style="accent-color: #bababa;"/>  Caiso </i> </label>
-    <label class="noneall" >  <input type="checkbox" id="allnoncaiso" value="noncaiso"  style="accent-color: #bababa;"/> Non-Caiso</i> </label>
-    <label class="noneall" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All&nbsp;&nbsp;&nbsp;&nbsp;</i> </label>
+    <label class="none_all" >  <input type="checkbox" id="none" value="none"  />  None </i> </label> &nbsp;
+    <label class="none_all" >  <input type="checkbox" id="allcaiso" value="caiso"  style="accent-color: #bababa;"/>  Caiso </i> </label>&nbsp;
+    <label class="none_all" >  <input type="checkbox" id="allnoncaiso" value="noncaiso"  style="accent-color: #bababa;"/> Non-Caiso</i> </label>&nbsp;
+    <label class="none_all" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All</i> </label> &nbsp;&nbsp;
     <label  class="caiso"> <input type="checkbox" id="caiso" value="PGE" checked style="accent-color: #91dfe8;"/>  <i class="fa fa-lightbulb-o"></i> PGE  &nbsp; </label>   
     <label class="caiso" > <input type="checkbox" id="caiso" value="SCE" checked style="accent-color: #56c4dc;"/>   <i class="fa fa-lightbulb-o"></i> SCE  &nbsp;  </label>
     <label class="caiso" > <input type="checkbox" id="caiso" value="SDGE" checked style="accent-color: #2397b1;"/>  <i class="fa fa-lightbulb-o" ></i> SDGE  &nbsp; </label>
