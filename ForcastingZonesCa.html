@@ -272,18 +272,9 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 if(cb.property("checked")){ 
                     // d3.selectAll("#all").attr('checked', 'false');
                     d3.selectAll("#checkbox").attr('checked', 'false');
-                    PAs.slice(1, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);})
+                    PAs.slice(0, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);})
                     }
             }
-            // else if (val == 'all'){ 
-            //     // If the check all box is check, I hide the groups except Other
-            //     if(cb.property("checked")){ 
-            //         d3.selectAll("#none").attr('checked', 'false');
-            //         d3.selectAll("#checkbox").attr('checked', 'true');
-            //         PAs.slice(1, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);})
-            //         };
-                
-            // }
             else{  // These are not checkall nor uncheckall    
                 
                 
