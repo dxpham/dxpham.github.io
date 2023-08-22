@@ -192,8 +192,8 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                         .attr("x", 0)
                         .attr("y", (d, i) => `${i * 1.1}em`)
                         .style("font-weight", (_, i) => i ? null : "bold")
-                        .style("font-size", (_, i) => i ? "x-small" : null)
-                        .attr("text-anchor", "right")
+                        .style("font-size", (_, i) => i ? "small" : null)
+                        // .attr("text-anchor", "right")
                         .text(d => d.length > 130 ? d.substring(0, 130) + " ..." : d)
                     );
             const {x, y, width: w, height: h} = text.node().getBBox();
