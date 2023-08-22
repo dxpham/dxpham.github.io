@@ -52,32 +52,21 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div class="container">
-  <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #91dfe8;"></i> PGE  </label>   
-<input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>  <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #56c4dc;"></i> SCE </label>
-
-<input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/> <label><i class="fa fa-lightbulb-o" style="font-size:30px;color: #2397b1;"></i> SDGE </label>
-<input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color:  #025e85;"></i> VEA</label>
-<input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #ffa0a0;"></i> IID</label>
-<input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #dc5656;"></i> NCNC</label>
-<input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #b12323;"></i> LADWP</label>
-<input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #850202;"></i> BUGL</label>
+    <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #91dfe8;"></i> PGE  </label>   
+    <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>  <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #56c4dc;"></i> SCE </label>
+    <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/> <label><i class="fa fa-lightbulb-o" style="font-size:30px;color: #2397b1;"></i> SDGE </label>
+    <input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color:  #025e85;"></i> VEA</label>
+    <input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #ffa0a0;"></i> IID</label>
+    <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #dc5656;"></i> NCNC</label>
+    <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #b12323;"></i> LADWP</label>
+    <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #850202;"></i> BUGL</label>
 </div>
-
-
-
 
 <!-- Create an element where the map will take place -->
 <div id="chart"></div>
-
-
-
 <script>
 
     // The svg
-
-
-
- 
     var
         margin = { top: 5, right: 20, bottom: 10, left: 10 }
         , width = window.innerWidth
@@ -92,12 +81,8 @@
     var projection = d3.geoMercator()
         .center([-119, 37.4])
         .scale((1 << 18) / 60)
-        .translate([margin.left,margin.top]);
+        .translate([margin.left,-30]);
     var path = d3.geoPath().projection(projection);
-
-
-  
- 
 
     Promise.all([
         d3.json('./assets/dat/CA-06-california-counties.geojson'),
@@ -110,7 +95,6 @@
     })
     
     const duration = 100;
-
     
     function draw_counties(counties){
      svg.append("g")
@@ -254,11 +238,11 @@ ${d.srcElement.__data__.properties.FZ_Def}`
   
           // If the box is check, I show the group
           if(cb.property("checked")){
-            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 1);
+            svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);
   
           // Otherwise I hide it
           }else{
-            svg.selectAll("#"+pa).transition().duration(100).style("opacity", 0);
+            svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);
           }
         })
       }
