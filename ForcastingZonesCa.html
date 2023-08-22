@@ -47,7 +47,7 @@
             width: 16px;
             height: 16px;
         }
-    label{font-size:20px;}
+    /* label{font-size:15px;} */
     label.caiso{ color:#0493b3; }
     label.noncaiso{ color:  #ac0707;  }
      label.caiso:hover{
@@ -75,15 +75,17 @@
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div>
     <label class="noneall" >  <input type="checkbox" id="none" value="none"  style="accent-color: #bababa;"/>  None </i> </label>
-    <label class="noneall" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All&nbsp;&nbsp;&nbsp;</i> </label>
-    <label  class="caiso"> <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>  <i class="fa fa-lightbulb-o"></i> PGE  &nbsp; </label>   
-    <label class="caiso" > <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   <i class="fa fa-lightbulb-o"></i> SCE  &nbsp;  </label>
-    <label class="caiso" > <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  <i class="fa fa-lightbulb-o" ></i> SDGE  &nbsp; </label>
-    <label class="caiso" ><input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/>  <i class="fa fa-lightbulb-o" ></i> VEA  &nbsp; </label>
-    <label class="noncaiso" > <input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> <i class="fa fa-lightbulb-o" ></i> IID &nbsp; </label>
-    <label class="noncaiso" > <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/>  <i class="fa fa-lightbulb-o" ></i> NCNC  &nbsp; </label>
-    <label class="noncaiso" >  <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> <i class="fa fa-lightbulb-o" ></i> LADWP &nbsp;</label>
-    <label class="noncaiso" >  <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> <i class="fa fa-lightbulb-o" > </i> BUGL &nbsp;  </i> </label>
+    <label class="noneall" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All&nbsp;</i> </label>
+    <label class="noneall" >  <input type="checkbox" id="allcaiso" value="caiso"  style="accent-color: #bababa;"/>  Caiso </i> </label>
+    <label class="noneall" >  <input type="checkbox" id="allnoncaiso" value="noncaiso"  style="accent-color: #bababa;"/> Non-Caiso&nbsp;&nbsp;&nbsp;</i> </label>
+    <label  class="caiso"> <input type="checkbox" id="caiso" value="PGE" checked style="accent-color: #91dfe8;"/>  <i class="fa fa-lightbulb-o"></i> PGE  &nbsp; </label>   
+    <label class="caiso" > <input type="checkbox" id="caiso" value="SCE" checked style="accent-color: #56c4dc;"/>   <i class="fa fa-lightbulb-o"></i> SCE  &nbsp;  </label>
+    <label class="caiso" > <input type="checkbox" id="caiso" value="SDGE" checked style="accent-color: #2397b1;"/>  <i class="fa fa-lightbulb-o" ></i> SDGE  &nbsp; </label>
+    <label class="caiso" ><input type="checkbox" id="caiso" value="VEA" checked style="accent-color: #025e85;"/>  <i class="fa fa-lightbulb-o" ></i> VEA  &nbsp; </label>
+    <label class="noncaiso" > <input type="checkbox" id="noncaiso" value="IID" checked style="accent-color: #ffa0a0;"/> <i class="fa fa-lightbulb-o" ></i> IID &nbsp; </label>
+    <label class="noncaiso" > <input type="checkbox" id="noncaiso" value="NCNC" checked style="accent-color: #dc5656;"/>  <i class="fa fa-lightbulb-o" ></i> NCNC  &nbsp; </label>
+    <label class="noncaiso" >  <input type="checkbox" id="noncaiso" value="LADWP" checked style="accent-color: #b12323;"/> <i class="fa fa-lightbulb-o" ></i> LADWP &nbsp;</label>
+    <label class="noncaiso" >  <input type="checkbox" id="noncaiso" value="BUGL" checked style="accent-color: #850202;"/> <i class="fa fa-lightbulb-o" > </i> BUGL &nbsp;  </i> </label>
     <!-- <button type='button' '>Uncheck All</button> -->
 </div>
 
@@ -268,7 +270,8 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 // If the uncheck box is check, I show the groups except Other
                 if(cb.property("checked")){ 
                     
-                    d3.selectAll("#checkbox").property('checked', false);
+                    d3.selectAll("#caiso").property('checked', false);
+                    d3.selectAll("#noncaiso").property('checked', false);
                     d3.selectAll("#none").property('checked', false);
                     PAs.slice(0, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);})
                     }
@@ -278,9 +281,30 @@ ${d.srcElement.__data__.properties.FZ_Def}`
                 // If the uncheck box is check, I show the groups except Other
                 if(cb.property("checked")){ 
                     
-                    d3.selectAll("#checkbox").property('checked', true);
+                    d3.selectAll("#caiso").property('checked', true);
+                    d3.selectAll("#noncaiso").property('checked', true);
                     d3.selectAll("#all").property('checked', false);
                     PAs.slice(0, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);})
+                    }
+            }
+            else if (val == 'caiso'){ 
+                // If the uncheck box is check, I show the caiso groups 
+                if(cb.property("checked")){ 
+                    
+                    d3.selectAll("#caiso").property('checked', true);
+                    d3.selectAll("#noncaiso").property('checked', false);
+                    d3.selectAll("#allcaiso").property('checked', false);
+                    PAs.slice(0, 4).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);})
+                    }
+            }
+            else if (val == 'noncaiso'){ 
+                // If the uncheck box is check, I show the noncaiso groups 
+                if(cb.property("checked")){ 
+                    
+                    d3.selectAll("#caiso").property('checked', false);
+                    d3.selectAll("#noncaiso").property('checked', true);
+                    d3.selectAll("#allnoncaiso").property('checked', false);
+                    PAs.slice(4,8).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);})
                     }
             }
             else{
