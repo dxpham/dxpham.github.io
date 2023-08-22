@@ -11,7 +11,7 @@
   
   <!-- Load d3.js -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   
   
    <style>
@@ -43,6 +43,7 @@
               pointer-events: none;}
       
       .tooltip{text-shadow: 2px 2px 25px #015284;}
+      
   </style>
 </head>
 <body>
@@ -51,16 +52,19 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div class="container">
-    <input type="checkbox" id="checkbox" value="PGE" checked/> <label> 🥕 PGE  </label>
-      <input type="checkbox" id="checkbox" value="SCE" checked/>  <label> 🍎 SCE </label>
-  
-    <input type="checkbox" id="checkbox" value="SDGE" checked/> <label>🍐 SDGE </label>
-  <input type="checkbox" id="checkbox" value="VEA" checked> <label> VEA</label>
-  <input type="checkbox" id="checkbox" value="IID" checked> <label> IID</label>
-  <input type="checkbox" id="checkbox" value="NCNC" checked> <label> NCNC</label>
-  <input type="checkbox" id="checkbox" value="LADWP" checked> <label> LADWP</label>
-  <input type="checkbox" id="checkbox" value="BUGL" checked> <label> BUGL</label>
+  <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #91dfe8;"></i> PGE  </label>   
+<input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>  <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #56c4dc;"></i> SCE </label>
+
+<input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/> <label><i class="fa fa-lightbulb-o" style="font-size:30px;color: #2397b1;"></i> SDGE </label>
+<input type="checkbox" id="checkbox" value="VEA" checked style="accent-color: #025e85;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color:  #025e85;"></i> VEA</label>
+<input type="checkbox" id="checkbox" value="IID" checked style="accent-color: #ffa0a0;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #ffa0a0;"></i> IID</label>
+<input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #dc5656;"></i> NCNC</label>
+<input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #b12323;"></i> LADWP</label>
+<input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> <label> <i class="fa fa-lightbulb-o" style="font-size:30px;color: #850202;"></i> BUGL</label>
 </div>
+
+
+
 
 <!-- Create an element where the map will take place -->
 <div id="chart"></div>
