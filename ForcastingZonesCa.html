@@ -64,13 +64,14 @@
         /* background:#dbdbdb; */
         color:#b1463e7a;
     }
-    label.none:hover{
-        /* background:#dbdbdb; */
+    label.noneall:hover{
+        box-sizing: 0px;
         color:  #9c9c9c6d;
     }
-    input#none[type="checkbox"]:checked{
+    /* input#none[type="checkbox"]:checked{
          box-shadow: 0 0 0 7px hotpink;
-    }
+    } */
+
   </style>
 </head>
 <body>
@@ -79,6 +80,8 @@
 <!-- partial -->
 <h1>CA Electric Demand Planning Areas and Forcasting Zones</h1>
 <div>
+    <label class="noneall" >  <input type="checkbox" id="none" value="none"  style="accent-color: #bababa;"/>  None &nbsp;</i> </label>
+    <label class="noneall" >  <input type="checkbox" id="all" value="all"  style="accent-color: #bababa;"/> All&nbsp;&nbsp;&nbsp;&nbsp;</i> </label>
     <label  class="caiso"> <input type="checkbox" id="checkbox" value="PGE" checked style="accent-color: #91dfe8;"/>  <i class="fa fa-lightbulb-o"></i> PGE  &nbsp; </label>   
     <label class="caiso" > <input type="checkbox" id="checkbox" value="SCE" checked style="accent-color: #56c4dc;"/>   <i class="fa fa-lightbulb-o"></i> SCE  &nbsp;  </label>
     <label class="caiso" > <input type="checkbox" id="checkbox" value="SDGE" checked style="accent-color: #2397b1;"/>  <i class="fa fa-lightbulb-o" ></i> SDGE  &nbsp; </label>
@@ -87,7 +90,7 @@
     <label class="noncaiso" > <input type="checkbox" id="checkbox" value="NCNC" checked style="accent-color: #dc5656;"/>  <i class="fa fa-lightbulb-o" ></i> NCNC  &nbsp; </label>
     <label class="noncaiso" >  <input type="checkbox" id="checkbox" value="LADWP" checked style="accent-color: #b12323;"/> <i class="fa fa-lightbulb-o" ></i> LADWP &nbsp;</label>
     <label class="noncaiso" >  <input type="checkbox" id="checkbox" value="BUGL" checked style="accent-color: #850202;"/> <i class="fa fa-lightbulb-o" > </i> BUGL &nbsp;  </i> </label>
-    <label class="none" >&nbsp;&nbsp; <input type="checkbox" id="none" value="none" checked style="accent-color: #bababa;"/> &nbsp; None </i> </label>
+    <!-- <button type='button' '>Uncheck All</button> -->
 </div>
 
 <!-- Create an element where the map will take place -->
@@ -270,27 +273,40 @@ ${d.srcElement.__data__.properties.FZ_Def}`
             if (val == 'none'){ 
                 // If the uncheck box is check, I show the groups except Other
                 if(cb.property("checked")){ 
-                    // d3.selectAll("#all").attr('checked', 'false');
-                    d3.selectAll("#checkbox").attr('checked', 'false');
+                    
+                    d3.selectAll("#checkbox").property('checked', false);
+                    d3.selectAll("#none").property('checked', false);
                     PAs.slice(0, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 0);})
                     }
+                 
             }
-            else{  // These are not checkall nor uncheckall    
+            else if (val == 'all'){ 
+                // If the uncheck box is check, I show the groups except Other
+                if(cb.property("checked")){ 
+                    
+                    d3.selectAll("#checkbox").property('checked', true);
+                    d3.selectAll("#all").property('checked', false);
+                    PAs.slice(0, -1).forEach(function (pa){ svg.selectAll("#"+pa).transition().duration(duration).style("opacity", 1);})
+                    }
+            }
+            else{
+                
+                // These are not checkall nor uncheckall    
                 
                 
                 // If the box is check, I show the group
                 if(cb.property("checked")){
-                    d3.selectAll("#none").attr('checked', 'false');
+                    d3.select("#none").property('checked', false);
                     svg.selectAll("#"+val).transition().duration(duration).style("opacity", 1);
                 // Otherwise I hide it
                 }else{ 
                     // d3.selectAll("#all").attr('checked', 'false');    
                     svg.selectAll("#"+val).transition().duration(duration).style("opacity", 0);
                 }
+                
             }
         })
     }
-
 
       
       // When a button change, I run the update function
