@@ -39,7 +39,7 @@
               text-shadow: 2px 2px 45px #015284;
               }
   
-      #labels{ text-shadow: 2px 2px 8px #013d6f;
+      #labels{ text-shadow: 2px 2px 8px  #013d6f;
               pointer-events: none;}
       
       .tooltip{text-shadow: 2px 2px 25px #015284;}
@@ -51,11 +51,44 @@
     label.noncaiso{ color:  #ac0707;  }
      label.caiso:hover{color:#3e9cb17a; }
     label.noncaiso:hover{color:#b1463e7a;}
-    label.none_all{background-color: rgb(199, 225, 227) ; border: .5px solid #56c4dc; border-radius: 5px; padding: 2px;}
-    label.none_all:hover{color:  #696969; background-color: rgb(243, 242, 242) ; border: .5px solid rgb(255, 207, 207);border-radius: 5px; padding: 2px;}
+    /* label.none_all{background-color: rgb(199, 225, 227) ; border: .5px solid #56c4dc; border-radius: 5px; padding: 2px;}
+    label.none_all:hover{color:  #696969; background-color: rgb(243, 242, 242) ; border: .5px solid rgb(255, 207, 207);border-radius: 5px; padding: 2px;} */
 
     /* input#none[type="checkbox"]:checked{ box-shadow: 0 0 0 1px hotpink; } */
 
+
+    label.none_all {
+    background-color: #fff;
+    border: 1px solid #d5d9d9;
+    border-radius: 8px;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    box-sizing: border-box;
+    color: #0f1111;
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Amazon Ember",sans-serif;
+    font-size: 13px;
+    line-height: 29px;
+    padding: 0 10px 0 11px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: middle;
+    /* width: 70px; */
+    }
+
+    label.none_all:hover {
+    background-color: #f7fafa;
+    }
+
+    label.none_all:focus {
+    border-color: #008296;
+    box-shadow: rgba(213, 217, 217, .5) 0 2px 5px 0;
+    outline: 0;
+    }
   </style>
 </head>
 <body>
@@ -89,7 +122,7 @@
         , width = window.innerWidth
         , height = window.innerHeight - margin.top - margin.bottom 
         , PAs = [   "VEA","SDGE","SCE","PGE", 'BUGL','LADWP','NCNC',"IID",'Other']
-        , colorScale = d3.scaleOrdinal(['#025e85',  '#2397b1','#56c4dc',  '#a0f5ff','#850202', '#b12323','#dc5656','#ffa0a0','#dbdbdb'])
+        , colorScale = d3.scaleOrdinal(['#025e85',  '#2397b1','#56c4dc',  '#a0f5ff','#850202', '#b12323','#dc5656','#ffa0a0','#ededed'])
                         .domain(PAs)
         , svg = d3.select('#chart').append("svg").attr("width", width)
             .attr("height",   height)
