@@ -200,7 +200,7 @@
         .on("mouseover", function(d) {
         tooltip.call(
             callout, 
-            `${d.srcElement.__data__.properties.FZ_Name} - ${d.srcElement.__data__.properties.Plnng_Area}
+            `${d.srcElement.__data__.properties.FZ_Number}.${d.srcElement.__data__.properties.FZ_Name} - ${d.srcElement.__data__.properties.Plnng_Area}
 Approx. Area: ${d.srcElement.__data__.properties.SHAPE_Area}K km2
 ${d.srcElement.__data__.properties.FZ_Def}`
         );
