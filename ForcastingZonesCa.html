@@ -80,7 +80,7 @@
     /* width: 70px; */
     }
 
-    label.none_all:hover {
+    label.none_all:hover { 
     background-color: #f7fafa;
     }
 
@@ -200,7 +200,7 @@
         .on("mouseover", function(d) {
         tooltip.call(
             callout, 
-            `PA:${d.srcElement.__data__.properties.Plnng_Area} - FZ:${d.srcElement.__data__.properties.FZ_Name}
+            `FZ:${d.srcElement.__data__.properties.FZ_Name}  - ${d.srcElement.__data__.properties.Plnng_Area}
 ${d.srcElement.__data__.properties.FZ_Def}`
         );
         d3.select(this)
