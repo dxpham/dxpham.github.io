@@ -200,7 +200,8 @@
         .on("mouseover", function(d) {
         tooltip.call(
             callout, 
-            `FZ:${d.srcElement.__data__.properties.FZ_Name}  - ${d.srcElement.__data__.properties.Plnng_Area}
+            `${d.srcElement.__data__.properties.FZ_Name} - ${d.srcElement.__data__.properties.Plnng_Area}
+Area: ${d.srcElement.__data__.properties.SHAPE_Area}
 ${d.srcElement.__data__.properties.FZ_Def}`
         );
         d3.select(this)
